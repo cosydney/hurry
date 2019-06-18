@@ -1,0 +1,91 @@
+
+h1, h2, h3, h4, h5, p {
+  /* font-family: 'Open Sans', sans-serif; */
+  font-family: 'avenir next';
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+#primary-button {
+  background-image: linear-gradient(135deg, #F05537 0%, #F07837 100%);
+  border-radius: 4px;
+  color: 'white'
+}
+#primary-button:hover {
+  box-shadow: 0 2px 8px 0 rgba(255,94,0,0.50);
+}
+
+.price {
+  background-color: #F05537;
+  color: white;
+}
+
+#schedule-top {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+  background-image: linear-gradient(135deg, #0050E0 0%, #0085FF 100%);
+  border-radius: 8px 8px 0 0;
+  height: 45px;
+  padding: 5px;
+}
+
+.ant-select-selection {
+  background: rgba(255,255,255,0.00);
+  border-radius: 4px;
+  background: rgba(255,255,255,0.20);
+  border: 1px solid #E1E4E8;
+  border-radius: 4px;
+  margin: 4px;
+  color: white;
+  border: none;
+}
+
+.ant-select-arrow {
+  color: white;
+}
+
+.ant-layout-header {
+  height: auto;
+}
+
+.chars-count {
+  bottom: -10px;
+  position: absolute;
+  color: lightgrey;
+  font-size: 12px;
+}
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

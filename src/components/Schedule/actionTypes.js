@@ -1,0 +1,3 @@
+export const ADD_SCHEDULE_BOX = "ADD_SCHEDULE_BOX";
+export const DELETE_SCHEDULE_BOX = "DELETE_SCHEDULE_BOX";
+export const EDIT_BOX = "EDIT_BOX";
