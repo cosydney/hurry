@@ -39,6 +39,7 @@ class ConnectWith extends Component {
 
   eventBrite() {
     console.log('URLFront', URLFront)
+    URLFront = 'https://emalight.herokuapp.com'
     const redirectUri = `${URLFront}dashboard/brite`;
     const popup = `https://www.eventbrite.com/oauth/authorize?response_type=token&client_id=${ClientId}&redirect_uri=${redirectUri}`;
     window.location.replace(popup);

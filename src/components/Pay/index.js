@@ -25,7 +25,7 @@ class Pay extends Component {
   };
 
   render() {
-    const { scheduled_sms, attendees, user } = this.props;
+    const { scheduled_sms, attendees, user, event } = this.props;
     let smsCount = 0;
     let contactCount = attendees.filter(attendee => attendee.profile.cell_phone)
       .length;
@@ -36,6 +36,7 @@ class Pay extends Component {
     }
     let totalSms = smsCount * contactCount;
     let pricing = totalSms * PRICING;
+    let currency = event.currency === 'EUR' ? '€' : '$';
 
     return (
       <div>
@@ -46,7 +47,7 @@ class Pay extends Component {
           That’s <strong>{totalSms} text messages</strong> in total.
           <br />
           This will cost you{" "}
-          <span className={"price"}> {Math.ceil(pricing)}€ </span>.
+          <span className={"price"}> {currency + Math.ceil(pricing)} </span>.
         </p>
         {/* <p><Checkbox> Send email unstead to people who don't have a phone number</Checkbox></p> */}
         <br />
@@ -57,7 +58,7 @@ class Pay extends Component {
           // ComponentClass="div"
           panelLabel="Pay" // prepended to the amount in the bottom pay button
           amount={Math.ceil(pricing) * 100} // cents
-          currency="EUR"
+          currency={event.currency === "EUR" ? "EUR" : "USD"}
           stripeKey={STRIPE_PUBLIC_KEY}
           locale="fr"
           email={user.email}
@@ -92,10 +93,11 @@ class Pay extends Component {
   }
 }
 
-const mapStateToProps = ({ schedule, attendees, user }) => ({
+const mapStateToProps = ({ schedule, attendees, user, event }) => ({
   scheduled_sms: schedule.scheduled_sms,
   attendees,
-  user
+  user,
+  event
 });
 
 // const mapDispatchToProps = dispatch => {
@@ -109,7 +111,7 @@ export default connect(
   null
 )(Pay);
 
-const hey = {
+const Eb = {
   id: "tok_1EmbFPGbh27lzp9c5Th6kbI9",
   object: "token",
   card: {
