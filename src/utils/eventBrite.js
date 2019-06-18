@@ -1,8 +1,3 @@
-
-export const ClientSecret  = (process.env.NODE_ENV === 'production' ? 
-'W4NJGW27UBY25TSL4X3RVS7QZFPCEM6CN63VTUHT6P7KH2NYIV'
-: 'HO325RWIVTQNM72X7YTVA35F47BVCKA3VTBLKY5KLACQTZRPJ4');
-
 export const ClientId = (process.env.NODE_ENV === 'production' ? 
 "BCSDB6BQ27CY5SJEGO"
 : "EL5LP66RQFPEWI3ZI6");
