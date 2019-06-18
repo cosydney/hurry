@@ -18,7 +18,7 @@ class App extends Component {
         <Layout style={{backgroundColor: 'lightgrey'}}>
           <Header style={{backgroundColor: '#f0f2f5'}}>
           <Row>
-            <Col sm={{ span: 20, offset: 4 }} xs={24}>
+            <Col sm={{ span: 20, offset: 4 }} xs={{ span: 23, offset: 1}}>
               <Title/>
             </Col>
           </Row>
@@ -26,7 +26,7 @@ class App extends Component {
         </Layout>
         <br/>
         <Row>
-          <Col sm={{ span: 20, offset: 4 }} xs={24}>
+          <Col sm={{ span: 20, offset: 4 }} xs={{ span: 23, offset: 1}}>
             <ConnectWith />
             <br></br>
             <Schedule />
