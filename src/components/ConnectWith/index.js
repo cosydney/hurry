@@ -96,6 +96,7 @@ class ConnectWith extends Component {
       event
     } = this.props;
     const { spinning, eventBriteVisible } = this.state;
+    let contactCount = attendees.filter(attendee => attendee.profile.cell_phone)
     return (
       <div>
         <h1>1. Import your event contacts</h1>
@@ -127,7 +128,7 @@ class ConnectWith extends Component {
                       <p>{new Date(event.start.utc).toString()}</p>
                     </div>
                   }
-                  <p>{attendees.length} Attendees.</p>
+                  <p>{attendees.length} Attendees. {contactCount} with phone numbers.</p>
                   </div>
                 )
                 }
