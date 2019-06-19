@@ -49,7 +49,7 @@ class Pay extends Component {
           This will cost you{" "}
           <span className={"price"}> {currency + Math.ceil(pricing)} </span>.
         </p>
-        {/* <p><Checkbox> Send email unstead to people who don't have a phone number</Checkbox></p> */}
+        <p><Checkbox> Send email unstead to people who don't have a phone number</Checkbox></p>
         <br />
         <StripeCheckout
           name="Ema" // the pop-in header title
