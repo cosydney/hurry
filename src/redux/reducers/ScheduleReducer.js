@@ -61,6 +61,7 @@ export default function(state = initialState, action) {
       };
     case EDIT_BOX:
       // Calculating interval of time before or after the event in MS d for dos
+      let shouldSort = action.info.text === state.scheduled_sms[action.index].text
       let isitBefore = action.info.before === "before";
       let numberd = action.info.number;
       let typed = action.info.type;
@@ -70,7 +71,9 @@ export default function(state = initialState, action) {
         action.index === i ? action.info : el
       )
       // sorting so that scheduled box appear one after the other
-      newScheduledSms.sort((a, b) => (a.schedule_time > b.schedule_time) ? 1 : -1)
+      if (shouldSort) {
+        newScheduledSms.sort((a, b) => (a.schedule_time > b.schedule_time) ? 1 : -1)
+      }
       return {
         ...state,
         scheduled_sms: newScheduledSms

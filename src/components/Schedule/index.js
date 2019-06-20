@@ -32,6 +32,7 @@ class Schedule extends Component {
               key={index}
             >
               <ScheduleBox
+                key={index}
                 index={index}
                 info={element}
                 add={false}
