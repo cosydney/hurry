@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Button, Checkbox } from "antd";
+import { Button, Checkbox, Icon } from "antd";
 import EmaBot from "../../images/ema_botblue.png";
 
 import StripeCheckout from "react-stripe-checkout";
@@ -36,11 +36,20 @@ class Pay extends Component {
     }
     let totalSms = smsCount * contactCount;
     let pricing = totalSms * PRICING;
-    let currency = event.currency === 'EUR' ? '€' : '$';
+    let currency = event.currency === "EUR" ? "€" : "$";
 
     return (
       <div>
-        <h1>3. Verify and check out</h1>
+        <h1>
+          <Icon
+            style={{
+              fontSize: "36px"
+            }}
+            type="dollar"
+            theme="twoTone"
+          />{" "}
+          Verify and check out
+        </h1>
         <p>
           You are scheduling <strong>{smsCount} text messages</strong> to{" "}
           <strong>{contactCount} of your contacts</strong>.<br />
@@ -49,7 +58,7 @@ class Pay extends Component {
           This will cost you{" "}
           <span className={"price"}> {currency + Math.ceil(pricing)} </span>.
         </p>
-        <p><Checkbox> Send email unstead to people who don't have a phone number</Checkbox></p>
+        {/* <p><Checkbox> Send email unstead to people who don't have a phone number</Checkbox></p> */}
         <br />
         <StripeCheckout
           name="Ema" // the pop-in header title

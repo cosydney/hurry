@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Table, message, Button, Spin, Modal } from "antd";
+import { Icon, Table, message, Button, Spin, Modal } from "antd";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 

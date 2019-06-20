@@ -48,9 +48,9 @@ class ScheduleBox extends Component {
       () => this.props.editBox(this.props.index, this.state)
     );
   };
-
   render() {
     const { add, addBox, deleteBox, index } = this.props;
+    let addS = this.state.number > 1 ? true : false;
     return (
       <Spin
         spinning={add}
@@ -105,9 +105,9 @@ class ScheduleBox extends Component {
                 onChange={this.onTimeChange}
                 value={this.state.type}
               >
-                <Option value={"minute"}>{"minute"}</Option>
-                <Option value={"hour"}>{"hour"}</Option>
-                <Option value={"day"}>{"day"}</Option>
+                <Option value={"minute"}>{addS ? 'minutes' : 'minute'}</Option>
+                <Option value={"hour"}>{addS ? 'hours' : 'hour'}</Option>
+                <Option value={"day"}>{addS ? 'days' : 'day'}</Option>
               </Select>
               <Select
                 showSearch
