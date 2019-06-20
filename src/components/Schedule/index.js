@@ -11,9 +11,9 @@ class Schedule extends Component {
       <div style={{ height: "auto" }}>
         <h1>
           <Icon
-            style={{ fontSize: "36px" }}
             type="calendar"
-            theme="twoTone"
+            theme="filled"
+            className='icon-section'
           />{" "}
           Schedule your messages
         </h1>

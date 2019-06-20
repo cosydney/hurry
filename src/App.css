@@ -80,6 +80,15 @@ h1, h2, h3, h4, h5, p {
   font-size: 12px;
 }
 
+.icon-section {
+  font-size: 18px;
+  background-color: #1b83fa;
+  /* background-color: lightslategray; */
+  border-radius: 29px;
+  padding: 7px;
+  color: white;
+}
+
 
 @keyframes App-logo-spin {
   from {

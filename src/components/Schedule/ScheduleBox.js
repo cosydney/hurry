@@ -126,9 +126,11 @@ class ScheduleBox extends Component {
               </Select>
               <Icon
                 style={{
-                  backgroundColor: "#ffffff0f",
+                  backgroundColor: "rgba(255, 255, 255, 0.29)",
                   color: "white",
-                  padding: 12,
+                  padding: 9,
+                  borderRadius: 4,
+                  marginRight: 3,
                 }}
                 type="close"
                 onClick={() => deleteBox(index)}

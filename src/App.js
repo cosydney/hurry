@@ -32,7 +32,7 @@ class App extends Component {
             <Schedule />
             <br></br>
             <br></br>
-            {/* <Pay /> */}
+            <Pay />
           </Col>
         </Row>
         <Footer>Privacy by design. <span aria-label='lock' role='img'>🔒</span>GDPR Compliant.</Footer>

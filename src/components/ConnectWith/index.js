@@ -38,7 +38,7 @@ class ConnectWith extends Component {
   };
 
   eventBrite() {
-    let URLFront = 'https://emalight.herokuapp.com/'
+    let URLFront = "https://emalight.herokuapp.com/";
     const redirectUri = `${URLFront}dashboard/brite`;
     const popup = `https://www.eventbrite.com/oauth/authorize?response_type=token&client_id=${ClientId}&redirect_uri=${redirectUri}`;
     window.location.replace(popup);
@@ -92,64 +92,76 @@ class ConnectWith extends Component {
   render() {
     const {
       user: { name, email },
-      attendees, 
+      attendees,
       event
     } = this.props;
     const { spinning, eventBriteVisible } = this.state;
-    let contactCount = attendees.filter(attendee => attendee.profile.cell_phone)
+    let contactCount = attendees.filter(
+      attendee => attendee.profile.cell_phone
+    );
     return (
       <div>
-        <h1>1. Import your event contacts</h1>
+        <h1>
+          <Icon
+            className="icon-section"
+            type="contacts"
+            theme="filled"
+          />{" "}
+          Import your event contacts
+        </h1>
         <Spin spinning={spinning}>
           <div>
             {/* BUTTON */}
             {!name && (
-            <Button
-              onClick={() => this.eventBrite()}
-              id={"primary-button"}
-              type={"primary"}
-            >
-              Connect with EventBrite
-            </Button>
-          )}
-          {/* TABLE */}
-          { name &&
-            <div>
-              <div style={{ marginBottom: 16 }}>
-              <span style={{ marginLeft: 8 }}>
-              </span>
-              </div>
-              <Table
-                title={() => (
-                  <div>
-                  {event.name &&
-                    <div>
-                      <h1>{event.name.text}</h1>
-                      <p>{new Date(event.start.utc).toString()}</p>
-                    </div>
-                  }
-                  <p>{attendees.length} Attendees. {contactCount} with phone numbers.</p>
-                  </div>
-                )
-                }
-                footer={() => (
-                  <div>
               <Button
-                type={'primary'}
-                onClick={() => this.setState({ eventBriteVisible: true })}
+                onClick={() => this.eventBrite()}
+                id={"primary-button"}
+                type={"primary"}
               >
-                Import another Event
+                Connect with EventBrite
               </Button>
-            </div>
-                )}
-                style={{marginRight: 40}}
-                size={'small'}
-                scroll={{x: 4, y: 400}}
-                columns={columns}
-                dataSource={attendees}
-              />
-            </div>
-          }
+            )}
+            {/* TABLE */}
+            {name && (
+              <div>
+                <div style={{ marginBottom: 16 }}>
+                  <span style={{ marginLeft: 8 }} />
+                </div>
+                <Table
+                  title={() => (
+                    <div>
+                      {event.name && (
+                        <div>
+                          <h1>{event.name.text}</h1>
+                          <p>{new Date(event.start.utc).toString()}</p>
+                        </div>
+                      )}
+                      <p>
+                        {attendees.length} Attendees. {contactCount} with phone
+                        numbers.
+                      </p>
+                    </div>
+                  )}
+                  footer={() => (
+                    <div>
+                      <Button
+                        type={"primary"}
+                        onClick={() =>
+                          this.setState({ eventBriteVisible: true })
+                        }
+                      >
+                        Import another Event
+                      </Button>
+                    </div>
+                  )}
+                  style={{ marginRight: 40 }}
+                  size={"small"}
+                  scroll={{ x: 4, y: 400 }}
+                  columns={columns}
+                  dataSource={attendees}
+                />
+              </div>
+            )}
           </div>
           {/* MODAL */}
           <Modal

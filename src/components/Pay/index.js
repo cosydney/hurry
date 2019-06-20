@@ -42,11 +42,9 @@ class Pay extends Component {
       <div>
         <h1>
           <Icon
-            style={{
-              fontSize: "36px"
-            }}
-            type="dollar"
-            theme="twoTone"
+            type="dollar-circle"
+            theme="filled"
+            className="icon-section"
           />{" "}
           Verify and check out
         </h1>
