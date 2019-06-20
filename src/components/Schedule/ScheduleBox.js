@@ -124,6 +124,15 @@ class ScheduleBox extends Component {
                 <Option value={"before"}>{"before"}</Option>
                 <Option value={"after"}>{"after"}</Option>
               </Select>
+              <Icon
+                style={{
+                  backgroundColor: "#ffffff0f",
+                  color: "white",
+                  padding: 12,
+                }}
+                type="close"
+                onClick={() => deleteBox(index)}
+              />
             </div>
           }
         >
@@ -134,19 +143,6 @@ class ScheduleBox extends Component {
             style={{ border: "none", resize: "none" }}
           />
           <p className={"chars-count"}>{this.state.text.length} characters • {Math.ceil(this.state.text.length / 160)} text message</p>
-          {!add && (
-            <Icon
-              style={{
-                color: "#0050E0",
-                position: "absolute",
-                top: -9,
-                zIndex: 3,
-                left: -7
-              }}
-              type="close-circle"
-              onClick={() => deleteBox(index)}
-            />
-          )}
         </Card>
       </Spin>
     );

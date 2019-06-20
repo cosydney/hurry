@@ -7,35 +7,33 @@ class Schedule extends Component {
   render() {
     const { addBox, scheduled_sms, delBox } = this.props;
     return (
-      <div
-        style={{
-          height: 270
-        }}
-      >
+      <div style={{ height: "auto" }}>
         <h1>2. Schedule your messages</h1>
         <div
           style={{
-            marginLeft: -163
+            display: "flex",
+            flexWrap: "wrap",
           }}
         >
-          <div
-            style={{
-              overflowY: "hidden",
-              overflowX: "auto",
-              display: "flex",
-              padding: "20px",
-              paddingLeft: 163,
-            }}
-          >
-            {scheduled_sms.map((element, index) => (
+          {scheduled_sms.map((element, index) => (
+            <div style={{ 
+              marginTop: 15,
+              marginLeft: -10
+              }}
+              key={index}
+              >
               <ScheduleBox
-                key={index}
                 index={index}
                 info={element}
                 add={false}
                 deleteBox={index => delBox(index)}
               />
-            ))}
+            </div>
+          ))}
+          <div style={{ 
+            marginTop: 15,
+            marginLeft: -10
+          }}>
             <ScheduleBox add={true} addBox={() => addBox()} />
           </div>
         </div>
