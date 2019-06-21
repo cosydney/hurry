@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ScheduleBox from "./ScheduleBox";
 import { connect } from "react-redux";
 import { addScheduleBox, deleteScheduleBox } from "./action";
-import { Icon } from "antd";
+import { Icon, Button } from "antd";
 
 class Schedule extends Component {
   render() {
@@ -10,11 +10,7 @@ class Schedule extends Component {
     return (
       <div style={{ height: "auto" }}>
         <h1>
-          <Icon
-            type="calendar"
-            theme="filled"
-            className='icon-section'
-          />{" "}
+          <Icon type="calendar" theme="filled" className="icon-section" />{" "}
           Schedule your messages
         </h1>
         <div
@@ -46,7 +42,24 @@ class Schedule extends Component {
               marginLeft: -10
             }}
           >
-            <ScheduleBox add={true} addBox={() => addBox()} />
+            <div
+              style={{
+                backgroundColor: "#F4F5F6",
+                height: 207,
+                width: 301,
+                borderRadius: 10,
+                marginLeft: 15,
+                marginRight: 15,
+                display: 'flex', 
+                justifyContent: 'center', 
+                alignItems: 'center',
+              }}
+            >
+              <Button style={{color: '#9197A7', backgroundColor: 'lightgrey'}} onClick={() => addBox()} icon="plus">
+                New
+              </Button>
+            </div>
+            {/* <ScheduleBox add={true} addBox={() => addBox()} /> */}
           </div>
         </div>
       </div>
