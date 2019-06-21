@@ -15,18 +15,18 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Layout style={{backgroundColor: 'lightgrey'}}>
-          <Header style={{backgroundColor: '#f0f2f5'}}>
+        <Layout style={{backgroundColor: '#EEF5FF'}}>
+          <Header style={{backgroundColor: '#EEF5FF'}}>
           <Row>
-            <Col sm={{ span: 20, offset: 4 }} xs={{ span: 23, offset: 1}}>
-              <Title/>
+            <Col sm={{ span: 20, offset: 2 }} xs={{ span: 23, offset: 1}}>
+                <Title/>
             </Col>
           </Row>
           </Header>
         </Layout>
         <br/>
         <Row>
-          <Col sm={{ span: 20, offset: 4 }} xs={{ span: 23, offset: 1}}>
+          <Col sm={{ span: 20, offset: 2 }} xs={{ span: 23, offset: 1}}>
             <ConnectWith />
             <br></br>
             <Schedule />
