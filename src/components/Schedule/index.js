@@ -55,7 +55,7 @@ class Schedule extends Component {
                 alignItems: 'center',
               }}
             >
-              <Button style={{color: '#9197A7', backgroundColor: 'lightgrey'}} onClick={() => addBox()} icon="plus">
+              <Button type={'dashed'} style={{color: '#9197A7', backgroundColor: 'lightgrey'}} onClick={() => addBox()} icon="plus">
                 New
               </Button>
             </div>
