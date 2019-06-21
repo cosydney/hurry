@@ -38,11 +38,6 @@ h1, h2, h3, h4, h5, p {
   box-shadow: 0 2px 8px 0 rgba(255,94,0,0.50);
 }
 
-.price {
-  background-color: #F05537;
-  color: white;
-}
-
 #schedule-top {
   display: flex;
   justify-content: space-around;
@@ -109,6 +104,13 @@ h1, h2, h3, h4, h5, p {
 
 .tag-count {
   color: #0664FE;
+  background-color: #eef5ff;
+  border-radius: 50px;
+  border: none;
+}
+
+.price-count {
+  color: #B59A0C;
   background-color: #eef5ff;
   border-radius: 50px;
   border: none;

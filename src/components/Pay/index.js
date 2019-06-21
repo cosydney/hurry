@@ -53,8 +53,7 @@ class Pay extends Component {
           <Tag color='blue' className='tag-count'>{contactCount} of your contacts.</Tag><br />
           That’s <Tag color='blue' className='tag-count'>{totalSms} text messages</Tag>in total.
           <br />
-          This will cost you{" "}
-          <span className={"price"}> {currency + Math.ceil(pricing)} </span>.
+          This will cost you <Tag color='#ffd701' className='price-count'>{currency + Math.ceil(pricing)}.</Tag>
         </p>
         {/* <p><Checkbox> Send email unstead to people who don't have a phone number</Checkbox></p> */}
         <br />
