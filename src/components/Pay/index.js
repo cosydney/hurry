@@ -35,6 +35,7 @@ class Pay extends Component {
       let eventId = response.data.id;
       console.log('eventId', eventId)
       this.postAttendees(eventId);
+      this.postMessages(eventId)
     })
     .catch(error => {
       message.error(`Server error ${error}`)
@@ -54,7 +55,6 @@ class Pay extends Component {
       newElement.info = element;
       array.push(newElement);
     }
-    console.log('array', array)
     Axios.post(`${URL}attendees`, array)
     .then(attendeeresponse => {
       console.log('attendeeresponse', attendeeresponse);
@@ -65,21 +65,19 @@ class Pay extends Component {
   }
 
   postMessages(eventId) {
-    const { attendees } = this.props;
+    const { scheduled_sms } = this.props;
     let array = [];
-    for (let i = 0; i < attendees.length; i++) {
-      const element = attendees[i];
+    for (let i = 0; i < scheduled_sms.length; i++) {
+      const element = scheduled_sms[i];
       let newElement = {}
-      newElement.scheduleTime = element.schedule_time;
+      newElement.scheduledTime = element.schedule_time;
       newElement.text = element.text;
       newElement.type = element.type;
       newElement.number = element.number;
       newElement.before = element.before;
       newElement.event = eventId;
-
       array.push(newElement);
     }
-    console.log('array', array)
     Axios.post(`${URL}messages`, array)
     .then(messagesresponse => {
       console.log('messagesresponse', messagesresponse);
@@ -95,6 +93,7 @@ class Pay extends Component {
 
   render() {
     const { scheduled_sms, attendees, user, event } = this.props;
+    console.log('scheduled_sms', scheduled_sms)
     let smsCount = 0;
     let contactCount = attendees.filter(attendee => attendee.profile.cell_phone)
       .length;
