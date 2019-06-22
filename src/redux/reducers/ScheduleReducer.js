@@ -8,7 +8,7 @@ const initialState = {
   scheduled_sms: [
     {
       schedule_time: -2 * 60 * 60 * 1000 - 1,
-      number: 2,
+      number: 10,
       type: "hour",
       before: "before",
       text: "Hey {name}, the event will happen in 2 hours, so get ready! The address of the event will be at "

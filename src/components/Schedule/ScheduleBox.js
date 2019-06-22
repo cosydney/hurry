@@ -78,11 +78,12 @@ class ScheduleBox extends Component {
               <Select
                 showSearch
                 style={{
+                  fontSize: 12,
                   width: 80,
                   backgroundColor: "#ffffff0f",
                   color: "white"
                 }}
-                defaultValue={1}
+                defaultValue={10}
                 optionFilterProp="children"
                 onChange={this.onValueChange}
                 value={this.state.number}
@@ -96,7 +97,8 @@ class ScheduleBox extends Component {
               <Select
                 showSearch
                 style={{
-                  width: 120,
+                  fontSize: 12,
+                  width: 105,
                   backgroundColor: "#ffffff0f",
                   color: "white"
                 }}
@@ -112,7 +114,8 @@ class ScheduleBox extends Component {
               <Select
                 showSearch
                 style={{
-                  width: 120,
+                  fontSize: 12,
+                  width: 100,
                   backgroundColor: "#ffffff0f",
                   color: "white"
                 }}
@@ -128,9 +131,11 @@ class ScheduleBox extends Component {
                 style={{
                   backgroundColor: "rgba(255, 255, 255, 0.29)",
                   color: "white",
-                  padding: 9,
-                  borderRadius: 4,
-                  marginRight: 3,
+                  padding: 8,
+                  fontSize: 10,
+                  borderRadius: 40,
+                  marginRight: 6,
+                  marginLeft: 20,
                 }}
                 type="close"
                 onClick={() => deleteBox(index)}
