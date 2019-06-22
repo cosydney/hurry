@@ -9,7 +9,7 @@ const Title = () => {
       <h1 style={{zIndex: 2, fontSize: 42, color: '#232E50',  fontWeight: 600}}>The best way to increase the attendance
 rate at your Eventbrite events</h1>
       <h2 style={{zIndex: 2, color: '#232E50'}}>Simply import you event contacts, schedule  your messages and send them !</h2>
-      <div className='confetti' style={{background: `url(${Confetti})`, right: isMobile ? 0 : 144}}></div>
+      <div className='confetti' style={{background: `url(${Confetti})`, right: isMobile ? 0 : false}}></div>
     </div>
   )
 }

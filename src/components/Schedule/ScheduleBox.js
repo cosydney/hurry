@@ -80,7 +80,6 @@ class ScheduleBox extends Component {
                 style={{
                   fontSize: 12,
                   width: 80,
-                  backgroundColor: "#ffffff0f",
                   color: "white"
                 }}
                 defaultValue={10}
@@ -99,7 +98,6 @@ class ScheduleBox extends Component {
                 style={{
                   fontSize: 12,
                   width: 105,
-                  backgroundColor: "#ffffff0f",
                   color: "white"
                 }}
                 defaultValue={"hour"}
@@ -116,7 +114,6 @@ class ScheduleBox extends Component {
                 style={{
                   fontSize: 12,
                   width: 100,
-                  backgroundColor: "#ffffff0f",
                   color: "white"
                 }}
                 defaultValue={"before"}
