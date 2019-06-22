@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Layout, Row, Col } from 'antd';
+import { Layout, Row, Col } from "antd";
 
-import Title from './components/Title';
-import ConnectWith from './components/ConnectWith'
-import Schedule from './components/Schedule'
-import Pay from './components/Pay'
+import Title from "./components/Title";
+import ConnectWith from "./components/ConnectWith";
+import Schedule from "./components/Schedule";
+import Pay from "./components/Pay";
 
-import './App.css'
+import "./App.css";
 
 const { Header, Footer } = Layout;
 
@@ -15,27 +15,39 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Layout style={{backgroundColor: '#EEF5FF'}}>
-          <Header style={{backgroundColor: '#EEF5FF'}}>
-          <Row>
-            <Col sm={{ span: 20, offset: 2 }} xs={{ span: 23, offset: 1}}>
-                <Title/>
-            </Col>
-          </Row>
+        <Layout style={{ backgroundColor: "#EEF5FF" }}>
+          <Header style={{ backgroundColor: "#EEF5FF" }}>
+            <Row>
+              <Col sm={{ span: 20, offset: 2 }} xs={{ span: 23, offset: 1 }}>
+                <Title />
+              </Col>
+            </Row>
           </Header>
         </Layout>
-        <br/>
+        <br />
         <Row>
-          <Col sm={{ span: 20, offset: 2 }} xs={{ span: 23, offset: 1}}>
+          <Col sm={{ span: 20, offset: 2 }} xs={{ span: 23, offset: 1 }}>
             <ConnectWith />
-            <br></br>
+            <br />
             <Schedule />
-            <br></br>
-            <br></br>
+            <br />
+            <br />
             <Pay />
           </Col>
         </Row>
-        <Footer style={{backgroundColor: 'rgb(238, 245, 255)'}}>Privacy by design. <span aria-label='lock' role='img'>🔒</span>GDPR Compliant.</Footer>
+        <Footer
+          style={{
+            backgroundColor: "rgb(238, 245, 255)",
+            fontSize: 16,
+            fontWeight: 500
+          }}
+        >
+          Privacy by design{" "}
+          <span style={{ marginLeft: 40 }} aria-label="lock" role="img">
+            🔒
+          </span>
+          GDPR Compliant
+        </Footer>
       </div>
     );
   }
