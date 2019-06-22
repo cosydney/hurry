@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Button, Checkbox, Icon, Tag } from "antd";
+import { message, Button, Checkbox, Icon, Tag } from "antd";
+import Axios from "axios";
+
 import EmaBot from "../../images/ema_botblue.png";
 
 import StripeCheckout from "react-stripe-checkout";
 import { STRIPE_PUBLIC_KEY } from "../../utils/stripe";
+import { URL } from "../../utils/urls";
 
 const PRICING = 0.2;
 class Pay extends Component {
@@ -21,7 +24,69 @@ class Pay extends Component {
   };
 
   postInfo = () => {
-    console.log('do something', this.props);
+    const { event } = this.props;
+    let body = {}
+    body.name = event.name.text;
+    body.start = event.start.utc; 
+    body.info = event
+    Axios
+    .post(`${URL}events`, body)
+    .then(response => {
+      let eventId = response.data.id;
+      console.log('eventId', eventId)
+      this.postAttendees(eventId);
+    })
+    .catch(error => {
+      message.error(`Server error ${error}`)
+    });
+  }
+
+  postAttendees(eventId) {
+    const { attendees } = this.props;
+    let array = [];
+    for (let i = 0; i < attendees.length; i++) {
+      const element = attendees[i];
+      let newElement = {}
+      newElement.event = eventId;
+      newElement.name = element.profile.name;
+      newElement.email = element.profile.email;
+      newElement.phone = element.profile.cell_phone;
+      newElement.info = element;
+      array.push(newElement);
+    }
+    console.log('array', array)
+    Axios.post(`${URL}attendees`, array)
+    .then(attendeeresponse => {
+      console.log('attendeeresponse', attendeeresponse);
+    })
+    .catch(error => {
+      message.error(`Server error ${error}`)
+    });
+  }
+
+  postMessages(eventId) {
+    const { attendees } = this.props;
+    let array = [];
+    for (let i = 0; i < attendees.length; i++) {
+      const element = attendees[i];
+      let newElement = {}
+      newElement.scheduleTime = element.schedule_time;
+      newElement.text = element.text;
+      newElement.type = element.type;
+      newElement.number = element.number;
+      newElement.before = element.before;
+      newElement.event = eventId;
+
+      array.push(newElement);
+    }
+    console.log('array', array)
+    Axios.post(`${URL}messages`, array)
+    .then(messagesresponse => {
+      console.log('messagesresponse', messagesresponse);
+    })
+    .catch(error => {
+      message.error(`Server error ${error}`)
+    });
   }
 
   onTouchTap = e => {
