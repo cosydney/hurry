@@ -35,7 +35,7 @@ class App extends Component {
             <Pay />
           </Col>
         </Row>
-        <Footer>Privacy by design. <span aria-label='lock' role='img'>🔒</span>GDPR Compliant.</Footer>
+        <Footer style={{backgroundColor: 'rgb(238, 245, 255)'}}>Privacy by design. <span aria-label='lock' role='img'>🔒</span>GDPR Compliant.</Footer>
       </div>
     );
   }
