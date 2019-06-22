@@ -31,6 +31,7 @@ const columns = [
 ];
 
 class ConnectWith extends Component {
+
   state = {
     spinning: false,
     eventBriteVisible: false,
@@ -98,7 +99,6 @@ class ConnectWith extends Component {
     let contactCount = attendees.filter(
       attendee => attendee.profile.cell_phone
     );
-    console.log(contactCount)
     return (
       <div>
         <h1>
@@ -147,7 +147,9 @@ class ConnectWith extends Component {
                       <Button
                         type={"primary"}
                         onClick={() =>
-                          this.setState({ eventBriteVisible: true })
+                          {
+                            this.setState({ eventBriteVisible: true })
+                          }
                         }
                       >
                         Import another Event

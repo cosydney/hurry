@@ -20,6 +20,10 @@ class Pay extends Component {
     });
   };
 
+  postInfo = () => {
+    console.log('do something', this.props);
+  }
+
   onTouchTap = e => {
     console.log("ontouchtap", e);
   };
@@ -87,7 +91,7 @@ class Pay extends Component {
 
           // triggerEvent="onTouchTap"
         >
-          <Button id={"primary-button"} type={"primary"}>
+          <Button id={"primary-button"} type={"primary"} onClick={() => this.postInfo()}>
             Pay now and schedule your messages
           </Button>
         </StripeCheckout>
@@ -117,36 +121,36 @@ export default connect(
   null
 )(Pay);
 
-const Eb = {
-  id: "tok_1EmbFPGbh27lzp9c5Th6kbI9",
-  object: "token",
-  card: {
-    id: "card_1EmbFPGbh27lzp9ccbjSJJd3",
-    object: "card",
-    address_city: null,
-    address_country: null,
-    address_line1: null,
-    address_line1_check: null,
-    address_line2: null,
-    address_state: null,
-    address_zip: null,
-    address_zip_check: null,
-    brand: "Visa",
-    country: "US",
-    cvc_check: "pass",
-    dynamic_last4: null,
-    exp_month: 8,
-    exp_year: 2042,
-    funding: "credit",
-    last4: "4242",
-    metadata: {},
-    name: "media@42entrepreneurs.fr",
-    tokenization_method: null
-  },
-  client_ip: "193.252.106.172",
-  created: 1560841011,
-  email: "media@42entrepreneurs.fr",
-  livemode: false,
-  type: "card",
-  used: false
-};
+// const Eb = {
+//   id: "tok_1EmbFPGbh27lzp9c5Th6kbI9",
+//   object: "token",
+//   card: {
+//     id: "card_1EmbFPGbh27lzp9ccbjSJJd3",
+//     object: "card",
+//     address_city: null,
+//     address_country: null,
+//     address_line1: null,
+//     address_line1_check: null,
+//     address_line2: null,
+//     address_state: null,
+//     address_zip: null,
+//     address_zip_check: null,
+//     brand: "Visa",
+//     country: "US",
+//     cvc_check: "pass",
+//     dynamic_last4: null,
+//     exp_month: 8,
+//     exp_year: 2042,
+//     funding: "credit",
+//     last4: "4242",
+//     metadata: {},
+//     name: "media@42entrepreneurs.fr",
+//     tokenization_method: null
+//   },
+//   client_ip: "193.252.106.172",
+//   created: 1560841011,
+//   email: "media@42entrepreneurs.fr",
+//   livemode: false,
+//   type: "card",
+//   used: false
+// };

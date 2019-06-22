@@ -14,6 +14,10 @@ class ImportContacts extends Component {
     attendees: [],
     selectedEvent: "",
   }
+
+  componentDidMount() {
+    this.fetchEvents();
+  }
   
   componentDidUpdate(prevProps) {
     const { email } = this.props.user;
@@ -161,6 +165,7 @@ class ImportContacts extends Component {
   render() {
     const { name, email } = this.props.user;
     const { spinning, events, attendees, selectedEvent } = this.state;
+    console.log('state', this.state)
 
     return (
       <div>
@@ -252,9 +257,10 @@ class ImportContacts extends Component {
   }
 }
 
-const mapStateToProps = ({ user, attendees }) => ({
+const mapStateToProps = ({ user, attendees, event }) => ({
   user,
-  attendees
+  attendees,
+  event
 });
 
 const mapDispatchToProps = dispatch => {
