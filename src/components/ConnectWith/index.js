@@ -38,7 +38,6 @@ class ConnectWith extends Component {
   };
 
   eventBrite() {
-    let URLFront = "https://emalight.herokuapp.com/";
     const redirectUri = `${URLFront}dashboard/brite`;
     const popup = `https://www.eventbrite.com/oauth/authorize?response_type=token&client_id=${ClientId}&redirect_uri=${redirectUri}`;
     window.location.replace(popup);
@@ -99,6 +98,7 @@ class ConnectWith extends Component {
     let contactCount = attendees.filter(
       attendee => attendee.profile.cell_phone
     );
+    console.log(contactCount)
     return (
       <div>
         <h1>
@@ -137,7 +137,7 @@ class ConnectWith extends Component {
                         </div>
                       )}
                       <p>
-                        {attendees.length} Attendees. {contactCount} with phone
+                        {attendees.length} Attendees. {contactCount.length} with phone
                         numbers.
                       </p>
                     </div>

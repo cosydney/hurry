@@ -48,13 +48,13 @@ class Pay extends Component {
           />{" "}
           Verify and check out
         </h1>
-        <p>
+        <div>
           You are scheduling <Tag color='blue' className='tag-count'>{smsCount} text messages</Tag>to
           <Tag color='blue' className='tag-count'>{contactCount} of your contacts.</Tag><br />
           That’s <Tag color='blue' className='tag-count'>{totalSms} text messages</Tag>in total.
           <br />
           This will cost you <Tag color='#ffd701' className='price-count'>{currency + Math.ceil(pricing)}.</Tag>
-        </p>
+        </div>
         {/* <p><Checkbox> Send email unstead to people who don't have a phone number</Checkbox></p> */}
         <br />
         <StripeCheckout
