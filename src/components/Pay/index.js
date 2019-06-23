@@ -60,7 +60,7 @@ class Pay extends Component {
     }
     Axios.post(`${URL}attendees`, array)
     .then(attendeeresponse => {
-      console.log('attendeeresponse', attendeeresponse);
+      console.log('attendeeresponse', attendeeresponse.data);
     })
     .catch(error => {
       message.error(`Server error ${error}`)
@@ -83,16 +83,12 @@ class Pay extends Component {
     }
     Axios.post(`${URL}messages`, array)
     .then(messagesresponse => {
-      console.log('messagesresponse', messagesresponse);
+      console.log('messagesresponse', messagesresponse.data);
     })
     .catch(error => {
       message.error(`Server error ${error}`)
     });
   }
-
-  onTouchTap = e => {
-    console.log("ontouchtap", e);
-  };
 
   render() {
     const { scheduled_sms, attendees, user, event } = this.props;
@@ -154,8 +150,6 @@ class Pay extends Component {
           // you are using multiple stripe keys
           reconfigureOnUpdate={false}
           // Note: you can change the event to `onTouchTap`, `onClick`, `onTouchStart`
-
-          // triggerEvent="onTouchTap"
         >
           <Button id={"primary-button"} type={"primary"} onClick={() => this.postInfo()}>
             Pay now and schedule your messages
