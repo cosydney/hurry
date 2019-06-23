@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { message, Button, Checkbox, Icon, Tag } from "antd";
+import { message, Button, Icon, Tag } from "antd";
 import Axios from "axios";
 
 import EmaBot from "../../images/ema_botblue.png";
@@ -24,18 +24,21 @@ class Pay extends Component {
   };
 
   postInfo = () => {
-    const { event } = this.props;
+    const { event, user } = this.props;
     let body = {}
     body.name = event.name.text;
     body.start = event.start.utc; 
-    body.info = event
+    body.info = event;
+    body.email = user.email;
+    body.username = user.name;
+    body.ebToken = user.ebToken;
     Axios
     .post(`${URL}events`, body)
     .then(response => {
       let eventId = response.data.id;
       console.log('eventId', eventId)
       this.postAttendees(eventId);
-      this.postMessages(eventId)
+      this.postMessages(eventId);
     })
     .catch(error => {
       message.error(`Server error ${error}`)
@@ -93,7 +96,6 @@ class Pay extends Component {
 
   render() {
     const { scheduled_sms, attendees, user, event } = this.props;
-    console.log('scheduled_sms', scheduled_sms)
     let smsCount = 0;
     let contactCount = attendees.filter(attendee => attendee.profile.cell_phone)
       .length;
