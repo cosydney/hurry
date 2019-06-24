@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import Axios from "axios";
 import ContactListHeader from "./ContactListHeader"
 import { addAttendees, addEvent } from './action';
+import { white } from 'ansi-colors';
 
 
 class ImportContacts extends Component {
@@ -174,7 +175,7 @@ class ImportContacts extends Component {
             {events && attendees.length < 1 && (
               <List
                 header={
-                  <h5 style={{ display: "flex", justifyContent: "center" }}>
+                  <h5 style={{ display: "flex", justifyContent: "center", color: 'white'}}>
                     {" "}
                     Connected as {name} with email {email}
                   </h5>
@@ -189,11 +190,12 @@ class ImportContacts extends Component {
                 renderItem={event => (
                   <List.Item
                     onClick={() => this.getEventContacts(event.id, event)}
+                    className='event-list' 
                   >
-                    <Button icon="right" size="small" />
                     <span style={{ marginLeft: 10 }}>{`   ${
                       event.name.text
                     }`}</span>
+                    <Button icon="right" size="small" style={{borderRadius: 40}}/>
                   </List.Item>
                 )}
               />

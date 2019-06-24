@@ -25,6 +25,7 @@ class Pay extends Component {
 
   postInfo = () => {
     const { event, user } = this.props;
+    // if event is none then message error
     let body = {}
     body.name = event.name.text;
     body.start = event.start.utc; 

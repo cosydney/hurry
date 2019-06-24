@@ -18,7 +18,7 @@ class App extends Component {
         <Layout style={{ backgroundColor: "#EEF5FF" }}>
           <Header style={{ backgroundColor: "#EEF5FF" }}>
             <Row>
-              <Col sm={{ span: 20, offset: 2 }} xs={{ span: 23, offset: 1 }}>
+              <Col sm={{ span: 22, offset: 2 }} xs={{ span: 23, offset: 1 }}>
                 <Title />
               </Col>
             </Row>

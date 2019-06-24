@@ -119,3 +119,23 @@ h1, h2, h3, h4, h5, p {
   border-radius: 50px;
   border: none;
 }
+
+.ant-list-header {
+  background-color: #D1410B;
+  color: white;
+}
+
+.ant-modal-body {
+  padding: 0px;
+}
+
+.event-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.event-list:hover {
+  background-color: #0664FE;
+  color: white;
+  cursor: pointer;
+}

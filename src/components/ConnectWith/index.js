@@ -173,6 +173,7 @@ class ConnectWith extends Component {
             onCancel={() => this.setState({ eventBriteVisible: false })}
             footer={[
               <Button
+                style={{backgroundColor: 'lightgrey'}}
                 key="back"
                 onClick={() => this.setState({ eventBriteVisible: false })}
               >
