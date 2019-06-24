@@ -106,7 +106,7 @@ class Pay extends Component {
 
     return (
       <div>
-        <h1>
+        <h1 className='sections'>
           <Icon
             type="dollar-circle"
             theme="filled"
@@ -123,7 +123,10 @@ class Pay extends Component {
         </div>
         {/* <p><Checkbox> Send email unstead to people who don't have a phone number</Checkbox></p> */}
         <br />
-        <StripeCheckout
+        <Button id={"primary-button"} type={"primary"} onClick={() => this.postInfo()}>
+            Pay now and schedule your messages
+          </Button>
+        {/* <StripeCheckout
           name="Ema" // the pop-in header title
           description="Send SMS to your attendees" // the pop-in header subtitle
           image={EmaBot}
@@ -154,7 +157,7 @@ class Pay extends Component {
           <Button id={"primary-button"} type={"primary"} onClick={() => this.postInfo()}>
             Pay now and schedule your messages
           </Button>
-        </StripeCheckout>
+        </StripeCheckout> */}
         <p style={{ color: "lightgrey", marginTop: 10, marginBottom: 20 }}>
           Payment processed with Stripe.
         </p>

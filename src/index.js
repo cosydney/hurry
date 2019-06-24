@@ -13,7 +13,7 @@ import { PersistGate } from 'redux-persist/lib/integration/react';
 import { Spin } from "antd";
 
 // for developement purposes
-// persistor.purge()
+persistor.purge()
 
 ReactDOM.render(
   <HttpsRedirect>

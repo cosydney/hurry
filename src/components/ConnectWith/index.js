@@ -101,7 +101,7 @@ class ConnectWith extends Component {
     );
     return (
       <div>
-        <h1>
+        <h1 className='sections'>
           <Icon
             className="icon-section"
             type="contacts"
