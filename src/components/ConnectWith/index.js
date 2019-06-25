@@ -34,7 +34,7 @@ class ConnectWith extends Component {
 
   state = {
     spinning: false,
-    eventBriteVisible: false,
+    eventBriteVisible: true,
     selectedRowKeys: []
   };
 

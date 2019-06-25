@@ -85,7 +85,7 @@ class Pay extends Component {
       newElement.event = eventId;
       array.push(newElement);
     }
-    Axios.post(`${URL}messages`, array)
+    Axios.post(`${URL}scheduledmessages`, array)
     .then(messagesresponse => {
       console.log('messagesresponse', messagesresponse.data);
     })
