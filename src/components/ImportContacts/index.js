@@ -166,8 +166,6 @@ class ImportContacts extends Component {
   render() {
     const { name, email } = this.props.user;
     const { spinning, events, attendees, selectedEvent } = this.state;
-    console.log('state', this.state)
-
     return (
       <div>
       <div>

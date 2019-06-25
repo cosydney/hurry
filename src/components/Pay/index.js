@@ -24,8 +24,11 @@ class Pay extends Component {
   };
 
   postInfo = () => {
-    const { event, user } = this.props;
-    // if event is none then message error
+    const { event, user, attendees } = this.props; 
+    if (attendees.length < 1){
+      message.error("You don't have any attendees please import from 1. Import your event contacts")
+      return;
+    }
     let body = {}
     body.name = event.name.text;
     body.start = event.start.utc; 
