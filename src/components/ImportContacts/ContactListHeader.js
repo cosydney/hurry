@@ -8,22 +8,33 @@ import Icon from 'antd/lib/icon';
 const ContactListHeader = ({ selectedEvent, attendees, resetState, importList, ToggleAttendees }) => (
   <div>
     <div>
-      <h5 style={{ margin: 10, marginBottom: 30 }}>
-        Attendees for {selectedEvent}
-      </h5>
+      <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+      <Button
+        onClick={() => resetState()}
+        icon={'arrow-left'}
+        style={{borderRadius: 40}}
+      />
+      <h2 style={{ color: 'white', margin: 10 }}>
+        {selectedEvent}
+      </h2>
+      </div>
+      <br></br>
       <div
         style={{
           display: 'flex',
           justifyContent: 'space-between',
         }}
       >
-        <Button
-          onClick={() => resetState()}
-          icon={'arrow-left'}
+        <Checkbox
+          style={{ marginTop: 12 }}
+          type="checkbox"
+          className="checkbox"
+          defaultChecked
+          onChange={() => ToggleAttendees()}
         />
         <Button
           onClick={() => importList()}
-          type={'primary'}
+          // type={'primary'}
         >
           <Icon
             type={'import'}
@@ -32,13 +43,6 @@ const ContactListHeader = ({ selectedEvent, attendees, resetState, importList, T
           {`Select ${attendees.filter(({ checked }) => checked).length} attendees`}
         </Button>
       </div>
-        <Checkbox
-          style={{ marginTop: 12 }}
-          type="checkbox"
-          className="checkbox"
-          defaultChecked
-          onChange={() => ToggleAttendees()}
-        />
     </div>
   </div>
   );

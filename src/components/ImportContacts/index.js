@@ -193,7 +193,7 @@ class ImportContacts extends Component {
                     <span style={{ marginLeft: 10 }}>{`   ${
                       event.name.text
                     }`}</span>
-                    <Button icon="right" size="small" style={{borderRadius: 40}}/>
+                    <Button icon="arrow-right" style={{borderRadius: 60}}/>
                   </List.Item>
                 )}
               />
@@ -202,6 +202,7 @@ class ImportContacts extends Component {
             {attendees.length > 1 && (
               <div>
                 <List
+                  id={'list-contact'}
                   style={{
                     overflow: "auto",
                     height: 500
