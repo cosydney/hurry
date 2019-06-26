@@ -37,23 +37,23 @@ class ScheduleBox extends Component {
 
   onValueChange = value => {
     this.setState({ number: value }, 
-      () => this.props.editBox(this.props.index, this.state)
+      () => this.props.editBox(this.props.index, this.state),
+      this.hitToaster()
     );
-    this.hitToaster()
   };
 
   onBeforeChange = value => {
     this.setState({ before: value }, 
-      () => this.props.editBox(this.props.index, this.state)
+      () => this.props.editBox(this.props.index, this.state),
+      this.hitToaster()
     );
-    this.hitToaster()
   };
 
   onTimeChange = value => {
     this.setState({ type: value }, 
-      () => this.props.editBox(this.props.index, this.state)
+      () => this.props.editBox(this.props.index, this.state),
+      this.hitToaster()
     );
-    this.hitToaster()
   };
 
   onTextChange = e => {
@@ -61,6 +61,7 @@ class ScheduleBox extends Component {
       () => this.props.editBox(this.props.index, this.state)
     );
   };
+  
   render() {
     const { add, addBox, deleteBox, index } = this.props;
     let addS = this.state.number > 1 ? true : false;

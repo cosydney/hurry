@@ -14,13 +14,6 @@ const initialState = {
       text: "Hey {name}, the event will happen in 10 hours, so get ready! The address of the event will be at "
     },
     {
-      schedule_time: -2 * 60 * 60 * 1000 - 1,
-      number: 10,
-      type: "minute",
-      before: "before",
-      text: "He {name}, the event will happen in 10 hours, so get ready! The address of the event will be at "
-    },
-    {
       schedule_time: 24 * 60 * 60 * 1000,
       number: 1,
       type: "day",
