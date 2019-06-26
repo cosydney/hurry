@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Card, Icon, Input, Select, Spin } from "antd";
+import { Card, Icon, Input, Select, Spin, message } from "antd";
 import { connect } from "react-redux";
 import { editBox } from "./action";
 
@@ -25,22 +25,31 @@ class ScheduleBox extends Component {
     }
   }
 
+  hitToaster() {
+    const { number, type, before } = this.state
+    message.success(`Your message has been scheduled ${number} ${type}${number > 1 ? 's' : ''} ${before} your event`)
+  }
+
+
   onValueChange = value => {
     this.setState({ number: value }, 
       () => this.props.editBox(this.props.index, this.state)
     );
+    this.hitToaster()
   };
 
   onBeforeChange = value => {
     this.setState({ before: value }, 
       () => this.props.editBox(this.props.index, this.state)
     );
+    this.hitToaster()
   };
 
   onTimeChange = value => {
     this.setState({ type: value }, 
       () => this.props.editBox(this.props.index, this.state)
     );
+    this.hitToaster()
   };
 
   onTextChange = e => {
@@ -145,6 +154,7 @@ class ScheduleBox extends Component {
             value={this.state.text}
             rows={5}
             style={{ border: "none", resize: "none" }}
+            onBlur={() => this.hitToaster()}
           />
           <p className={"chars-count"}>{this.state.text.length} characters • {Math.ceil(this.state.text.length / 160)} text message</p>
         </Card>
