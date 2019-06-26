@@ -27,7 +27,9 @@ class ScheduleBox extends Component {
 
   hitToaster() {
     const { number, type, before, text } = this.state
-    if (before === 'before') {
+    if (text === '') {
+      message.warning("Empty messages won't be sent")
+    } else if (before === 'before') {
       message.success(`Your message "${text.substring(0,10)}..." will be scheduled ${number} ${type}${number > 1 ? 's' : ''} ${before} your event`)
     } else if (before === 'after') {
       message.success(`Your message "${text.substring(0,10)}..." will be scheduled ${number} ${type}${number > 1 ? 's' : ''} ${before} the beginning of your event`)
