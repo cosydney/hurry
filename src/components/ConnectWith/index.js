@@ -42,7 +42,6 @@ class ConnectWith extends Component {
 
   eventBrite() {
     console.log("🚨")
-    console.log(URLFront, ClientId)
     console.log(process.env.NODE_ENV)
     let URLFront = 'https://emalight.herokuapp.com/'
     let ClientId = 'YIW6MCZ3ADAKXGHYHN'
