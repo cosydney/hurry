@@ -9,6 +9,8 @@ import Pay from "./components/Pay";
 
 import "./App.css";
 
+require("dotenv").config();
+
 const { Header, Footer } = Layout;
 
 class App extends Component {
