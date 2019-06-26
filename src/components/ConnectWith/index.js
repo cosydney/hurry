@@ -10,6 +10,8 @@ import { URLFront } from "../../utils/urls";
 import { ClientId } from "../../utils/eventBrite";
 import ImportContacts from "../ImportContacts";
 
+import Confetti from "../../images/confetti-bg.png";
+
 import Axios from "axios";
 
 const columns = [
@@ -34,7 +36,7 @@ class ConnectWith extends Component {
 
   state = {
     spinning: false,
-    eventBriteVisible: true,
+    eventBriteVisible: false,
     selectedRowKeys: []
   };
 
@@ -132,14 +134,15 @@ class ConnectWith extends Component {
                     <div>
                       {event.name && (
                         <div>
+                          
                           <h1>{event.name.text}</h1>
                           <p>{new Date(event.start.utc).toString()}</p>
                         </div>
                       )}
-                      <p>
-                        {attendees.length} Attendees. {contactCount.length} with phone
-                        numbers.
-                      </p>
+                      <h2>
+                        <Icon type="user" /> {attendees.length} Attendees
+                        {/* {contactCount.length} with phone numbers. */}
+                      </h2>
                     </div>
                   )}
                   footer={() => (

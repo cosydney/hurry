@@ -14,7 +14,7 @@ const ContactListHeader = ({ selectedEvent, attendees, resetState, importList, T
         icon={'arrow-left'}
         style={{borderRadius: 40}}
       />
-      <h2 style={{ color: 'white', margin: 10 }}>
+      <h2 style={{ color: '#232E50', margin: 10 }}>
         {selectedEvent}
       </h2>
       </div>
