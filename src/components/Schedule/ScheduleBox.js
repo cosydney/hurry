@@ -26,9 +26,9 @@ class ScheduleBox extends Component {
   }
 
   hitToaster() {
-    const { number, type, before } = this.state
+    const { number, type, before, text } = this.state
     if (before === 'before') {
-      message.success(`Your message will be scheduled ${number} ${type}${number > 1 ? 's' : ''} ${before} your event`)
+      message.success(`Your message "${text.substring(0,8)}" will be scheduled ${number} ${type}${number > 1 ? 's' : ''} ${before} your event`)
     } else if (before === 'after') {
       message.success(`Your message will be scheduled ${number} ${type}${number > 1 ? 's' : ''} ${before} the beginning of your event`)
     }
@@ -61,7 +61,7 @@ class ScheduleBox extends Component {
       () => this.props.editBox(this.props.index, this.state)
     );
   };
-  
+
   render() {
     const { add, addBox, deleteBox, index } = this.props;
     let addS = this.state.number > 1 ? true : false;
