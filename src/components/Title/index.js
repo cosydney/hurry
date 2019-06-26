@@ -5,7 +5,7 @@ const Title = () => {
   const isMobile = window.innerWidth <= 500;
   return (
     <div style={{display: 'flex', justifyContent: 'space-around', flexDirection: 'column', margin: '20px 0px 0px 0px', minHeight: 413}}>
-      <h1>Harry</h1>
+      <h1>Harry (ALPHA)</h1>
       <h1 style={{zIndex: 2, fontSize: 46, color: '#232E50',  fontWeight: 600}}>Increase the attendance
 rate at your Eventbrite events</h1>
       <h2 style={{zIndex: 2, color: '#9197A7', fontSize: 24}}>Simply import you event contacts, schedule  your messages and send them !</h2>
