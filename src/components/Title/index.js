@@ -4,6 +4,7 @@ import Confetti from "../../images/confetti-bg.png";
 const Title = () => {
   const isMobile = window.innerWidth <= 500;
   console.log('node_env', process.env.NODE_ENV)
+  console.log("env", process.env)
   return (
     <div style={{display: 'flex', justifyContent: 'space-around', flexDirection: 'column', margin: '20px 0px 0px 0px', minHeight: 413}}>
       <h1>Harry (ALPHA)</h1>

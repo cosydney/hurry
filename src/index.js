@@ -12,6 +12,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { Spin } from "antd";
 
+require("dotenv").config();
 // for developement purposes
 // persistor.purge()
 

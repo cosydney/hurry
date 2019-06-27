@@ -151,7 +151,3 @@ h1, h2, h3, h4, h5, p {
 .ant-table-title h1 {
   color: #232E50;
 }
-
-.ant-table-title h1 {
-  background: url('./images/confetti-bg@2x.png');
-}
