@@ -10,8 +10,6 @@ import { URLFront } from "../../utils/urls";
 import { ClientId } from "../../utils/eventBrite";
 import ImportContacts from "../ImportContacts";
 
-import Confetti from "../../images/confetti-bg.png";
-
 import Axios from "axios";
 
 const columns = [

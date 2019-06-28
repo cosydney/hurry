@@ -4,5 +4,5 @@ export const URL = (process.env.REACT_APP_NODE === 'development' ?
   : 'http://localhost:1337/');
 
 export const URLFront = (process.env.REACT_APP_NODE === 'development' ?
-'https://emalight.herokuapp.com/'
+'https://www.thankyouharry.co/'
 : 'http://localhost:3000/');

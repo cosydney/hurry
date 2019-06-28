@@ -11,16 +11,28 @@ import { URL } from "../../utils/urls";
 
 const PRICING = 0.2;
 class Pay extends Component {
+  state = {
+    eventId: '',
+  }
+
   onToken = token => {
-    console.log(JSON.stringify(token));
-    fetch("/save-stripe-token", {
-      method: "POST",
-      body: JSON.stringify(token)
-    }).then(response => {
-      response.json().then(data => {
-        alert(`We are in business, ${data.email}`);
-      });
-    });
+    let { eventId } = this.state;
+    const { event } = this.props;
+    let body = {}
+    body.token = token.id;
+    body.info = token;
+    body.event = eventId;
+    body.price = this.calculatePricing();
+    body.currency = event.currency === "EUR" ? "EUR" : "USD";
+
+    Axios.post(`${URL}save-stripe-token`, body)
+    .then(({data}) => {
+        console.log('data', data)
+        message.success(`We are in business`)
+    })
+    .catch(response => {
+      message.error('error processing payment', response.error)
+    })
   };
 
   postInfo = () => {
@@ -40,7 +52,9 @@ class Pay extends Component {
     .post(`${URL}events`, body)
     .then(response => {
       let eventId = response.data.id;
+      this.setState({ eventId })
       console.log('eventId', eventId)
+      // TODO
       this.postAttendees(eventId);
       this.postMessages(eventId);
     })
@@ -62,6 +76,9 @@ class Pay extends Component {
       newElement.info = element;
       array.push(newElement);
     }
+    if (array.length === 1) {
+      array = array[0];
+    }
     Axios.post(`${URL}attendees`, array)
     .then(attendeeresponse => {
       console.log('attendeeresponse', attendeeresponse.data);
@@ -72,18 +89,21 @@ class Pay extends Component {
   }
 
   postMessages(eventId) {
-    const { scheduled_sms } = this.props;
+    const { scheduled_sms, event } = this.props;
     let array = [];
     for (let i = 0; i < scheduled_sms.length; i++) {
       const element = scheduled_sms[i];
       let newElement = {}
-      newElement.scheduledTime = element.schedule_time;
+      newElement.scheduledTime = new Date((new Date(event.start.utc) -1 + element.schedule_time));
       newElement.text = element.text;
       newElement.type = element.type;
       newElement.number = element.number;
       newElement.before = element.before;
       newElement.event = eventId;
       array.push(newElement);
+    }
+    if (array.length === 1) {
+      array = array[0];
     }
     Axios.post(`${URL}scheduledmessages`, array)
     .then(messagesresponse => {
@@ -92,6 +112,21 @@ class Pay extends Component {
     .catch(error => {
       message.error(`Server error ${error}`)
     });
+  }
+
+  calculatePricing() {
+    const { scheduled_sms, attendees } = this.props;
+    let smsCount = 0;
+    let contactCount = attendees.filter(attendee => attendee.profile.cell_phone)
+      .length;
+
+    for (let i = 0; i < scheduled_sms.length; i++) {
+      const sms = scheduled_sms[i];
+      smsCount += Math.ceil(sms.text.length / 160);
+    }
+    let totalSms = smsCount * contactCount;
+    let pricing = totalSms * PRICING;
+    return Math.round(pricing * 100)
   }
 
   render() {
@@ -105,7 +140,7 @@ class Pay extends Component {
       smsCount += Math.ceil(sms.text.length / 160);
     }
     let totalSms = smsCount * contactCount;
-    let pricing = totalSms * PRICING;
+    let pricing = this.calculatePricing();
     let currency = event.currency === "EUR" ? "€" : "$";
 
     return (
@@ -123,20 +158,20 @@ class Pay extends Component {
           <Tag color='blue' className='tag-count'>{contactCount} of your contacts.</Tag><br />
           That’s <Tag color='blue' className='tag-count'>{totalSms} text messages</Tag>in total.
           <br />
-          This will cost you <Tag color='#ffd701' className='price-count'>{currency + Math.ceil(pricing)}.</Tag>
+          This will cost you <Tag color='#ffd701' className='price-count'>{currency + pricing / 100}.</Tag>
         </div>
         {/* <p><Checkbox> Send email unstead to people who don't have a phone number</Checkbox></p> */}
         <br />
-        <Button id={"primary-button"} type={"primary"} onClick={() => this.postInfo()}>
+        {/* <Button id={"primary-button"} type={"primary"} onClick={() => this.postInfo()}>
             Pay now and schedule your messages
-          </Button>
-        {/* <StripeCheckout
+          </Button> */}
+        <StripeCheckout
           name="Ema" // the pop-in header title
           description="Send SMS to your attendees" // the pop-in header subtitle
           image={EmaBot}
           // ComponentClass="div"
           panelLabel="Pay" // prepended to the amount in the bottom pay button
-          amount={Math.ceil(pricing) * 100} // cents
+          amount={pricing} // cents
           currency={event.currency === "EUR" ? "EUR" : "USD"}
           stripeKey={STRIPE_PUBLIC_KEY}
           locale="fr"
@@ -161,7 +196,7 @@ class Pay extends Component {
           <Button id={"primary-button"} type={"primary"} onClick={() => this.postInfo()}>
             Pay now and schedule your messages
           </Button>
-        </StripeCheckout> */}
+        </StripeCheckout>
         <p style={{ color: "lightgrey", marginTop: 10, marginBottom: 20 }}>
           Payment processed with Stripe.
         </p>
