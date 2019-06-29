@@ -9,15 +9,22 @@ class Schedule extends Component {
     const { addBox, scheduled_sms, delBox } = this.props;
     return (
       <div style={{ height: "auto" }}>
-        <h1 className='sections'>
+        <h1 className="sections">
           <Icon type="calendar" theme="filled" className="icon-section" />{" "}
           Schedule your messages
         </h1>
         <Tag color="blue" className="tag-info">
-                {" "}
-                <Icon type="info-circle" theme='filled' /> Use variables Name, Phone, Email, QrCodeLink to include people informations. <br></br>
-                Ex : “Hello <span style={{color: '#0664FE'}}>{"{name}"}</span>, are you sure to be there tomorrow night ?” = “Hello <span style={{color: '#0664FE'}}>Rosalia Marquez</span>, are you sure to be there tomorrow ? 
-              </Tag>
+          {" "}
+          <Icon type="info-circle" theme="filled" style={{ marginRight: 8 }} />
+          Use variables Name, Phone, Email, <span>QrCodeLink to include people
+          informations. </span><br />
+          <span style={{ marginLeft: 20 }} />Ex : “Hello  {" "}
+          <span style={{ color: "#0664FE" }}>{"{name},"}</span> are you sure to
+          be there tomorrow night ?” = 
+          <span>“Hello{" "}
+          <span style={{ color: "#0664FE" }}>Rosalia Marquez</span>,</span>are you
+          sure to be there tomorrow ?"
+        </Tag>
         <div
           style={{
             display: "flex",
@@ -55,12 +62,17 @@ class Schedule extends Component {
                 borderRadius: 10,
                 marginLeft: 15,
                 marginRight: 15,
-                display: 'flex', 
-                justifyContent: 'center', 
-                alignItems: 'center',
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
               }}
             >
-              <Button type={'dashed'} style={{color: '#9197A7', backgroundColor: 'lightgrey'}} onClick={() => addBox()} icon="plus">
+              <Button
+                type={"dashed"}
+                style={{ color: "#9197A7", backgroundColor: "lightgrey" }}
+                onClick={() => addBox()}
+                icon="plus"
+              >
                 New
               </Button>
             </div>

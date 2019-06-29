@@ -140,7 +140,9 @@ class ConnectWith extends Component {
                 <Icon type="info-circle" theme='filled' /> Attendee without phone will receive
                 email instead
               </Tag>
+              <br></br>
               <Button
+                style={{marginTop: 5}}
                 icon={'edit'}
                 type={"primary"}
                 onClick={() => {
