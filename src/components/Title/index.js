@@ -11,7 +11,6 @@ class Title extends Component {
   componentDidMount() {
     let width = window.innerWidth
     const height = document.getElementById('container').clientHeight;
-    console.log('height', height)
     var confettiSettings = {
       target: "confetti-holder",
       max: "40",

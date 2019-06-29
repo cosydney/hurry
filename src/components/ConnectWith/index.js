@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Icon, Table, message, Button, Spin, Modal } from "antd";
+import { Icon, Table, message, Button, Spin, Modal, Tag } from "antd";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
@@ -30,8 +30,33 @@ const columns = [
   }
 ];
 
-class ConnectWith extends Component {
+const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+];
 
+function formatAMPM(date) {
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var ampm = hours >= 12 ? "pm" : "am";
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+  var strTime = hours + ":" + minutes + " " + ampm;
+  return strTime;
+}
+
+class ConnectWith extends Component {
   state = {
     spinning: false,
     eventBriteVisible: false,
@@ -95,23 +120,36 @@ class ConnectWith extends Component {
       attendees,
       event
     } = this.props;
+    console.log(event);
     const { spinning, eventBriteVisible } = this.state;
     let contactCount = attendees.filter(
       attendee => attendee.profile.cell_phone
     );
     return (
       <div>
-        <h1 className='sections'>
-          <Icon
-            className="icon-section"
-            type="contacts"
-            theme="filled"
-          />{" "}
+        <h1 className="sections">
+          <Icon className="icon-section" type="contacts" theme="filled" />{" "}
           Import your event contacts
         </h1>
         <Spin spinning={spinning}>
           <div>
             {/* BUTTON */}
+            <div className={"info-import"}>
+              <Tag color="blue" className="tag-info">
+                {" "}
+                <Icon type="info-circle" theme='filled' /> Attendee without phone will receive
+                email instead
+              </Tag>
+              <Button
+                icon={'edit'}
+                type={"primary"}
+                onClick={() => {
+                  this.setState({ eventBriteVisible: true });
+                }}
+              >
+                Import another Event
+              </Button>
+            </div>
             {!name && (
               <Button
                 onClick={() => this.eventBrite()}
@@ -132,32 +170,60 @@ class ConnectWith extends Component {
                     <div>
                       {event.name && (
                         <div>
-                          
-                          <h1>{event.name.text}</h1>
-                          <p>{new Date(event.start.utc).toString()}</p>
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                              alignItems: "center",
+                              margin: 20
+                            }}
+                          >
+                            <h1>{event.name.text}</h1>
+                            <h2>
+                              <Icon type="user" /> {attendees.length} Attendees
+                              {/* {contactCount.length} with phone numbers. */}
+                            </h2>
+                          </div>
+                          <div
+                            style={{
+                              display: "flex",
+                              margin: 20,
+                              marginTop: -20,
+                              padding: 5
+                            }}
+                          >
+                            <div
+                              style={{
+                                marginRight: 10,
+                                padding: 10,
+                                backgroundColor: "white",
+                                display: "flex",
+                                justifyContent: "center",
+                                flexDirection: "column",
+                                alignItems: "center",
+                                minWidth: 70,
+                                height: 70
+                              }}
+                            >
+                              <h4 style={{ margin: 0, marginBottom: -10 }}>
+                                {monthNames[
+                                  new Date(event.start.utc).getMonth()
+                                ].toUpperCase()}
+                              </h4>
+                              <h1 style={{ margin: 0, marginTop: 4 }}>
+                                {new Date(event.start.utc).getDay()}
+                              </h1>
+                            </div>
+                            <div>
+                              <h4>{formatAMPM(new Date(event.start.utc))}</h4>
+                              {/* <h4>Station F</h4>
+                              <h4>Address</h4> */}
+                            </div>
+                          </div>
                         </div>
                       )}
-                      <h2>
-                        <Icon type="user" /> {attendees.length} Attendees
-                        {/* {contactCount.length} with phone numbers. */}
-                      </h2>
                     </div>
                   )}
-                  footer={() => (
-                    <div>
-                      <Button
-                        type={"primary"}
-                        onClick={() =>
-                          {
-                            this.setState({ eventBriteVisible: true })
-                          }
-                        }
-                      >
-                        Import another Event
-                      </Button>
-                    </div>
-                  )}
-                  style={{ marginRight: 40 }}
                   size={"small"}
                   scroll={{ x: 4, y: 400 }}
                   columns={columns}
@@ -174,7 +240,7 @@ class ConnectWith extends Component {
             onCancel={() => this.setState({ eventBriteVisible: false })}
             footer={[
               <Button
-                style={{backgroundColor: 'lightgrey'}}
+                style={{ backgroundColor: "lightgrey" }}
                 key="back"
                 onClick={() => this.setState({ eventBriteVisible: false })}
               >

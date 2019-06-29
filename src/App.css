@@ -113,6 +113,15 @@ h1, h2, h3, h4, h5, p {
   border: none;
 }
 
+.tag-info {
+  border: none;
+  color: #232E50;
+  background-color: #EEF5FF;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 14;
+}
+
 .price-count {
   color: #B59A0C;
   background-color: #eef5ff;
@@ -145,9 +154,15 @@ h1, h2, h3, h4, h5, p {
 }
 
 .ant-table-title {
-  background-color: #EEF5FF;
+  background-color: #E9EBEF;
 }
 
-.ant-table-title h1 {
+.ant-table-title h1, h2, h3, h4, h5 {
   color: #232E50;
+}
+
+.info-import {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

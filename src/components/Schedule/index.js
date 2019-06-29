@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ScheduleBox from "./ScheduleBox";
 import { connect } from "react-redux";
 import { addScheduleBox, deleteScheduleBox } from "./action";
-import { Icon, Button } from "antd";
+import { Icon, Button, Tag } from "antd";
 
 class Schedule extends Component {
   render() {
@@ -13,6 +13,11 @@ class Schedule extends Component {
           <Icon type="calendar" theme="filled" className="icon-section" />{" "}
           Schedule your messages
         </h1>
+        <Tag color="blue" className="tag-info">
+                {" "}
+                <Icon type="info-circle" theme='filled' /> Use variables Name, Phone, Email, QrCodeLink to include people informations. <br></br>
+                Ex : “Hello <span style={{color: '#0664FE'}}>{"{name}"}</span>, are you sure to be there tomorrow night ?” = “Hello <span style={{color: '#0664FE'}}>Rosalia Marquez</span>, are you sure to be there tomorrow ? 
+              </Tag>
         <div
           style={{
             display: "flex",
