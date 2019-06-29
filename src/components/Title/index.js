@@ -14,7 +14,7 @@ class Title extends Component {
     console.log('height', height)
     var confettiSettings = {
       target: "confetti-holder",
-      max: "20",
+      max: "40",
       size: "1",
       animate: true,
       props: ["circle", "square", "triangle", "line"],
@@ -29,11 +29,11 @@ class Title extends Component {
   }
 
   render() {
-    const config = {
+    const configLogo = {
       angle: "308",
       spread: "155",
       startVelocity: "33",
-      elementCount: "85",
+      elementCount: "50",
       dragFriction: 0.1,
       duration: "3370",
       stagger: "1",
@@ -65,7 +65,7 @@ class Title extends Component {
             setTimeout(() => this.setState({ active: false }), 300);
           }}
         >
-          <Confetti active={active} config={config} />
+          <Confetti active={active} config={configLogo} />
           Harry (ALPHA)
         </h1>
         <h1
