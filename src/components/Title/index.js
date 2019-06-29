@@ -1,62 +1,86 @@
-import React, { useState } from "react";
+import React, { Component, useState } from "react";
 
 import ConfettiImg from "../../images/confetti-bg.png";
 import Confetti from "react-dom-confetti";
+import ConfettiGenerator from "confetti-js";
 
-const Title = () => {
-  const config = {
-    angle: "308",
-    spread: "155",
-    startVelocity: "33",
-    elementCount: "85",
-    dragFriction: 0.1,
-    duration: "3370",
-    stagger: "1",
-    width: "10px",
-    height: "10px",
-    colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"]
+class Title extends Component {
+  state = {
+    active: false
   };
-  const [active, setActive] = useState(false);
-  const isMobile = window.innerWidth <= 500;
 
-  return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-around",
-        flexDirection: "column",
-        margin: "20px 0px 0px 0px",
-        minHeight: 413
-      }}
-    >
-      <h1
-        onClick={() => {
-          setActive(!active);
-          setTimeout(function() {
-            setActive(false);
-          }, 300);
-        }}
-      >
-        <Confetti active={active} config={config} /> 
-        Harry (ALPHA)
-      </h1>
-      <h1
-        style={{ zIndex: 2, fontSize: 46, color: "#232E50", fontWeight: 600 }}
-      >
-        Increase the attendance rate at your Eventbrite events
-      </h1>
-      <h2 style={{ zIndex: 2, color: "#9197A7", fontSize: 24 }}>
-        Simply import you event contacts, schedule your messages and send them !
-      </h2>
+  componentDidMount() {
+    let width = window.innerWidth
+    const height = document.getElementById('container').clientHeight;
+    console.log('height', height)
+    var confettiSettings = {
+      target: "confetti-holder",
+      max: "20",
+      size: "1",
+      animate: true,
+      props: ["circle", "square", "triangle", "line"],
+      colors: [[165, 104, 246], [230, 61, 135], [0, 199, 228], [253, 214, 126]],
+      clock: "1",
+      rotate: true,
+      width: width,
+      height: height,
+    };
+    var confetti = new ConfettiGenerator(confettiSettings);
+    confetti.render();
+  }
+
+  render() {
+    const config = {
+      angle: "308",
+      spread: "155",
+      startVelocity: "33",
+      elementCount: "85",
+      dragFriction: 0.1,
+      duration: "3370",
+      stagger: "1",
+      width: "10px",
+      height: "10px",
+      colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"]
+    };
+    const { active } = this.state;
+    const isMobile = window.innerWidth <= 500;
+
+    return (
       <div
-        className="confetti"
+        id='container'
         style={{
-          background: `url(${ConfettiImg})`,
-          right: isMobile ? 0 : false
+          display: "flex",
+          justifyContent: "space-around",
+          flexDirection: "column",
+          margin: "20px 0px 0px 0px",
+          minHeight: 413
         }}
-      />
-    </div>
-  );
-};
+      >
+        <div style={{ position: "absolute", display: "flex", marginLeft: isMobile? -63 : -146 }}>
+          <canvas id="confetti-holder" />
+        </div>
+        <h1
+          style={{zIndex: 2}}
+          onClick={() => {
+            this.setState({ active: true });
+            setTimeout(() => this.setState({ active: false }), 300);
+          }}
+        >
+          <Confetti active={active} config={config} />
+          Harry (ALPHA)
+        </h1>
+        <h1
+          style={{ zIndex: 2, fontSize: 46, color: "#232E50", fontWeight: 600 }}
+        >
+          Increase the attendance rate at your Eventbrite events
+        </h1>
+        <h2 style={{ zIndex: 2, color: "#9197A7", fontSize: 24 }}>
+          Simply import you event contacts, schedule your messages and send them
+          !
+        </h2>
+        </div>
+    );
+  }
+}
 
 export default Title;
