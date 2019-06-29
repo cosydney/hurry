@@ -200,6 +200,7 @@ class ScheduleBox extends Component {
           />
           <div className={"box-chars"}>
             <p className={"chars-count"}>
+              <Icon type="font-size" size='small' style={{marginRight: 0}} />{" "}
               {this.state.text.length} /{" "}
               {160 * Math.ceil(this.state.text.length / 160)}{" "}
               <Icon type="message" size="small" style={{marginLeft: 30}} />{" "}
