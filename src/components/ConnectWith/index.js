@@ -134,24 +134,6 @@ class ConnectWith extends Component {
         <Spin spinning={spinning}>
           <div>
             {/* BUTTON */}
-            <div className={"info-import"}>
-              <Tag color="blue" className="tag-info">
-                {" "}
-                <Icon type="info-circle" theme='filled' /> Attendee without phone will receive
-                email instead
-              </Tag>
-              <br></br>
-              <Button
-                style={{marginTop: 5}}
-                icon={'edit'}
-                type={"primary"}
-                onClick={() => {
-                  this.setState({ eventBriteVisible: true });
-                }}
-              >
-                Import another Event
-              </Button>
-            </div>
             {!name && (
               <Button
                 onClick={() => this.eventBrite()}
@@ -164,6 +146,24 @@ class ConnectWith extends Component {
             {/* TABLE */}
             {name && (
               <div>
+                <div className={"info-import"}>
+                <Tag color="blue" className="tag-info">
+                  {" "}
+                  <Icon type="info-circle" theme='filled' /> Attendee without phone will receive
+                  email instead
+                </Tag>
+                <br></br>
+                <Button
+                  style={{marginTop: 5}}
+                  icon={'edit'}
+                  type={"primary"}
+                  onClick={() => {
+                    this.setState({ eventBriteVisible: true });
+                  }}
+                >
+                  Import another Event
+                </Button>
+              </div>
                 <div style={{ marginBottom: 16 }}>
                   <span style={{ marginLeft: 8 }} />
                 </div>
