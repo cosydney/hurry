@@ -1,6 +1,5 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 
-import ConfettiImg from "../../images/confetti-bg.png";
 import Confetti from "react-dom-confetti";
 import ConfettiGenerator from "confetti-js";
 

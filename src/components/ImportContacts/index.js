@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import Axios from "axios";
 import ContactListHeader from "./ContactListHeader"
 import { addAttendees, addEvent } from './action';
-import { white } from 'ansi-colors';
 
 
 class ImportContacts extends Component {
