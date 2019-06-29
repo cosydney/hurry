@@ -114,8 +114,6 @@ h1, h2, h3, h4, h5, p {
 }
 
 .tag-info {
-  display: flex;
-  flex-wrap: wrap;
   border: none;
   color: #232E50;
   background-color: #EEF5FF;
@@ -167,5 +165,10 @@ h1, h2, h3, h4, h5, p {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+}
+
+.text-info {
+  display: flex;
   flex-wrap: wrap;
 }

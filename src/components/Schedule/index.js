@@ -16,14 +16,8 @@ class Schedule extends Component {
         <Tag color="blue" className="tag-info">
           {" "}
           <Icon type="info-circle" theme="filled" style={{ marginRight: 8 }} />
-          Use variables Name, Phone, Email, <span>QrCodeLink to include people
-          informations. </span><br />
-          <span style={{ marginLeft: 20 }} />Ex : “Hello  {" "}
-          <span style={{ color: "#0664FE" }}>{"{name},"}</span> are you sure to
-          be there tomorrow night ?” = 
-          <span>“Hello{" "}
-          <span style={{ color: "#0664FE" }}>Rosalia Marquez</span>,</span>are you
-          sure to be there tomorrow ?"
+            insert variables to include people informations. <br />
+            <span style={{marginLeft: 20}}>Ex: {"{name}"} = Rosalia Marquez</span>
         </Tag>
         <div
           style={{
