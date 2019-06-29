@@ -54,14 +54,23 @@ h1, h2, h3, h4, h5, p {
 }
 
 .ant-select-selection {
-  background: rgba(255,255,255,0.00);
-  border-radius: 4px;
   background: rgba(255,255,255,0.20);
-  border: 1px solid #E1E4E8;
   border-radius: 4px;
   margin: 4px;
   color: white;
   border: none;
+}
+
+#insert > div {
+  background: white;
+  border-radius: 4px;
+  margin: 4px;
+  color: #0664FE;
+  border: none;
+}
+
+#insert > div > span {
+  color: #0664FE;
 }
 
 .ant-select-arrow {

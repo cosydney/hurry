@@ -84,7 +84,7 @@ class ScheduleBox extends Component {
       >
         <Card
           style={{
-            width: 300,
+            width: 340,
             borderRadius: 10,
             marginLeft: 15,
             marginRight: 15
@@ -96,6 +96,7 @@ class ScheduleBox extends Component {
                 style={{
                   fontSize: 12,
                   width: 80,
+                  marginLeft: 5,
                   color: "white"
                 }}
                 defaultValue={10}
@@ -113,7 +114,7 @@ class ScheduleBox extends Component {
                 showSearch
                 style={{
                   fontSize: 12,
-                  width: 105,
+                  width: 85,
                   color: "white"
                 }}
                 defaultValue={"hour"}
@@ -140,19 +141,27 @@ class ScheduleBox extends Component {
                 <Option value={"before"}>{"before"}</Option>
                 <Option value={"after"}>{"after"}</Option>
               </Select>
-              <Icon
+              <Select
+                id={'insert'}
+                showSearch
                 style={{
-                  backgroundColor: "rgba(255, 255, 255, 0.29)",
-                  color: "white",
-                  padding: 8,
-                  fontSize: 10,
-                  borderRadius: 40,
-                  marginRight: 6,
-                  marginLeft: 20,
+                  fontSize: 12,
+                  width: 110,
+                  color: "#0664FE",
+                  marginLeft: 10,
+                  marginRight: 5,
                 }}
-                type="close"
-                onClick={() => deleteBox(index)}
-              />
+                defaultValue={"Insert"}
+                optionFilterProp="children"
+                // onChange={this.onBeforeChange}
+                value={'Insert'}
+              >
+                <Option value={"FirstName"}>{"FirstName"}</Option>
+                <Option value={"LastName"}>{"LastName"}</Option>
+                <Option value={"FullName"}>{"FullName"}</Option>
+                <Option value={"Email"}>{"Email"}</Option>
+                <Option value={"TicketLink"}>{"TicketLink"}</Option>
+              </Select>
             </div>
           }
         >
@@ -164,6 +173,22 @@ class ScheduleBox extends Component {
             onBlur={() => this.hitToaster()}
           />
           <p className={"chars-count"}>{this.state.text.length} characters • {Math.ceil(this.state.text.length / 160)} text message</p>
+          <Icon
+                style={{
+                  // backgroundColor: "rgba(255, 255, 255, 0.29)",
+                  color: "red",
+                  padding: 6,
+                  fontSize: 13,
+                  borderRadius: 40,
+                  marginRight: 6,
+                  marginLeft: 20,
+                  borderColor: 'red',
+                  borderStyle: 'solid',
+                  borderWidth: 1
+                }}
+                type="delete"
+                onClick={() => deleteBox(index)}
+              />
         </Card>
       </Spin>
     );

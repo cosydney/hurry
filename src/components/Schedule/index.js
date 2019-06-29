@@ -52,7 +52,7 @@ class Schedule extends Component {
               style={{
                 backgroundColor: "#F4F5F6",
                 height: 207,
-                width: 301,
+                width: 340,
                 borderRadius: 10,
                 marginLeft: 15,
                 marginRight: 15,
@@ -67,7 +67,7 @@ class Schedule extends Component {
                 onClick={() => addBox()}
                 icon="plus"
               >
-                New
+                New Message
               </Button>
             </div>
             {/* <ScheduleBox add={true} addBox={() => addBox()} /> */}
