@@ -156,11 +156,11 @@ class ScheduleBox extends Component {
                 // onChange={this.onBeforeChange}
                 value={'Insert'}
               >
-                <Option value={"FirstName"}>{"FirstName"}</Option>
-                <Option value={"LastName"}>{"LastName"}</Option>
-                <Option value={"FullName"}>{"FullName"}</Option>
-                <Option value={"Email"}>{"Email"}</Option>
-                <Option value={"TicketLink"}>{"TicketLink"}</Option>
+                <Option style={{fontSize: 11}} value={"FirstName"}>{"FirstName"}</Option>
+                <Option style={{fontSize: 11}} value={"LastName"}>{"LastName"}</Option>
+                <Option style={{fontSize: 11}} value={"FullName"}>{"FullName"}</Option>
+                <Option style={{fontSize: 11}} value={"Email"}>{"Email"}</Option>
+                <Option style={{fontSize: 11}} value={"TicketLink"}>{"TicketLink"}</Option>
               </Select>
             </div>
           }
@@ -172,6 +172,7 @@ class ScheduleBox extends Component {
             style={{ border: "none", resize: "none" }}
             onBlur={() => this.hitToaster()}
           />
+          <div className={"box-chars"}>
           <p className={"chars-count"}>{this.state.text.length} characters • {Math.ceil(this.state.text.length / 160)} text message</p>
           <Icon
                 style={{
@@ -189,6 +190,7 @@ class ScheduleBox extends Component {
                 type="delete"
                 onClick={() => deleteBox(index)}
               />
+          </div>
         </Card>
       </Spin>
     );

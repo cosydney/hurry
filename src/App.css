@@ -82,9 +82,6 @@ h1, h2, h3, h4, h5, p {
 }
 
 .chars-count {
-  bottom: -10px;
-  position: absolute;
-  color: lightgrey;
   font-size: 12px;
 }
 
@@ -180,4 +177,16 @@ h1, h2, h3, h4, h5, p {
 .text-info {
   display: flex;
   flex-wrap: wrap;
+}
+
+.box-chars {
+  margin-top: 5px;
+  margin-bottom: -15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.box-chars p {
+  margin-bottom: 0;
 }
