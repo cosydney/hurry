@@ -16,8 +16,8 @@ class ScheduleBox extends Component {
   };
 
   componentDidMount = () => {
-    this.setState(this.props.info)
-  }
+    this.setState(this.props.info);
+  };
 
   componentDidUpdate(prevProps) {
     if (prevProps.info !== this.props.info) {
@@ -26,41 +26,57 @@ class ScheduleBox extends Component {
   }
 
   hitToaster() {
-    const { number, type, before, text } = this.state
-    if (text === '') {
-      message.warning("Empty messages won't be sent")
-    } else if (before === 'before') {
-      message.success(`Your message "${text.substring(0,10)}..." will be scheduled ${number} ${type}${number > 1 ? 's' : ''} ${before} your event`)
-    } else if (before === 'after') {
-      message.success(`Your message "${text.substring(0,10)}..." will be scheduled ${number} ${type}${number > 1 ? 's' : ''} ${before} the beginning of your event`)
+    const { number, type, before, text } = this.state;
+    if (text === "") {
+      message.warning("Empty messages won't be sent");
+    } else if (before === "before") {
+      message.success(
+        `Your message "${text.substring(
+          0,
+          10
+        )}..." will be scheduled ${number} ${type}${
+          number > 1 ? "s" : ""
+        } ${before} your event`
+      );
+    } else if (before === "after") {
+      message.success(
+        `Your message "${text.substring(
+          0,
+          10
+        )}..." will be scheduled ${number} ${type}${
+          number > 1 ? "s" : ""
+        } ${before} the beginning of your event`
+      );
     }
   }
 
-
   onValueChange = value => {
-    this.setState({ number: value }, 
+    this.setState(
+      { number: value },
       () => this.props.editBox(this.props.index, this.state),
       this.hitToaster()
     );
   };
 
   onBeforeChange = value => {
-    this.setState({ before: value }, 
+    this.setState(
+      { before: value },
       () => this.props.editBox(this.props.index, this.state),
       this.hitToaster()
     );
   };
 
   onTimeChange = value => {
-    this.setState({ type: value }, 
+    this.setState(
+      { type: value },
       () => this.props.editBox(this.props.index, this.state),
       this.hitToaster()
     );
   };
 
   onTextChange = e => {
-    this.setState({ text: e.target.value }, 
-      () => this.props.editBox(this.props.index, this.state)
+    this.setState({ text: e.target.value }, () =>
+      this.props.editBox(this.props.index, this.state)
     );
   };
 
@@ -122,9 +138,9 @@ class ScheduleBox extends Component {
                 onChange={this.onTimeChange}
                 value={this.state.type}
               >
-                <Option value={"minute"}>{addS ? 'minutes' : 'minute'}</Option>
-                <Option value={"hour"}>{addS ? 'hours' : 'hour'}</Option>
-                <Option value={"day"}>{addS ? 'days' : 'day'}</Option>
+                <Option value={"minute"}>{addS ? "minutes" : "minute"}</Option>
+                <Option value={"hour"}>{addS ? "hours" : "hour"}</Option>
+                <Option value={"day"}>{addS ? "days" : "day"}</Option>
               </Select>
               <Select
                 showSearch
@@ -142,25 +158,35 @@ class ScheduleBox extends Component {
                 <Option value={"after"}>{"after"}</Option>
               </Select>
               <Select
-                id={'insert'}
+                id={"insert"}
                 showSearch
                 style={{
                   fontSize: 12,
                   width: 110,
                   color: "#0664FE",
                   marginLeft: 10,
-                  marginRight: 5,
+                  marginRight: 5
                 }}
                 defaultValue={"Insert"}
                 optionFilterProp="children"
                 // onChange={this.onBeforeChange}
-                value={'Insert'}
+                value={"Insert"}
               >
-                <Option style={{fontSize: 11}} value={"FirstName"}>{"FirstName"}</Option>
-                <Option style={{fontSize: 11}} value={"LastName"}>{"LastName"}</Option>
-                <Option style={{fontSize: 11}} value={"FullName"}>{"FullName"}</Option>
-                <Option style={{fontSize: 11}} value={"Email"}>{"Email"}</Option>
-                <Option style={{fontSize: 11}} value={"TicketLink"}>{"TicketLink"}</Option>
+                <Option style={{ fontSize: 11 }} value={"FirstName"}>
+                  {"FirstName"}
+                </Option>
+                <Option style={{ fontSize: 11 }} value={"LastName"}>
+                  {"LastName"}
+                </Option>
+                <Option style={{ fontSize: 11 }} value={"FullName"}>
+                  {"FullName"}
+                </Option>
+                <Option style={{ fontSize: 11 }} value={"Email"}>
+                  {"Email"}
+                </Option>
+                <Option style={{ fontSize: 11 }} value={"TicketLink"}>
+                  {"TicketLink"}
+                </Option>
               </Select>
             </div>
           }
@@ -173,23 +199,28 @@ class ScheduleBox extends Component {
             onBlur={() => this.hitToaster()}
           />
           <div className={"box-chars"}>
-          <p className={"chars-count"}>{this.state.text.length} characters • {Math.ceil(this.state.text.length / 160)} text message</p>
-          <Icon
-                style={{
-                  // backgroundColor: "rgba(255, 255, 255, 0.29)",
-                  color: "red",
-                  padding: 6,
-                  fontSize: 13,
-                  borderRadius: 40,
-                  marginRight: 6,
-                  marginLeft: 20,
-                  borderColor: 'red',
-                  borderStyle: 'solid',
-                  borderWidth: 1
-                }}
-                type="delete"
-                onClick={() => deleteBox(index)}
-              />
+            <p className={"chars-count"}>
+              {this.state.text.length} /{" "}
+              {160 * Math.ceil(this.state.text.length / 160)}{" "}
+              <Icon type="message" size="small" style={{marginLeft: 30}} />{" "}
+              {Math.ceil(this.state.text.length / 160)} SMS
+            </p>
+            <Icon
+              style={{
+                // backgroundColor: "rgba(255, 255, 255, 0.29)",
+                color: "red",
+                padding: 6,
+                fontSize: 13,
+                borderRadius: 40,
+                marginRight: 6,
+                marginLeft: 20,
+                borderColor: "red",
+                borderStyle: "solid",
+                borderWidth: 1
+              }}
+              type="delete"
+              onClick={() => deleteBox(index)}
+            />
           </div>
         </Card>
       </Spin>
