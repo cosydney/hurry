@@ -51,7 +51,7 @@ class Schedule extends Component {
             <div
               style={{
                 backgroundColor: "#F4F5F6",
-                height: 207,
+                height: 226,
                 width: 340,
                 borderRadius: 10,
                 marginLeft: 15,

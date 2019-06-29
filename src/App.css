@@ -180,13 +180,18 @@ h1, h2, h3, h4, h5, p {
 }
 
 .box-chars {
-  margin-top: 5px;
   margin-bottom: -15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-top: 1px solid #e8e8e8;
+  color: #9197A7;
+  padding-top: 5px;
+  padding: 5px 15px 0px;
+  margin: 0 -24px -15px -24px;
 }
 
 .box-chars p {
+  margin-top: 5px;
   margin-bottom: 0;
 }
