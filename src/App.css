@@ -188,10 +188,31 @@ h1, h2, h3, h4, h5, p {
   color: #9197A7;
   padding-top: 5px;
   padding: 5px 15px 0px;
-  margin: 0 -24px -15px -24px;
+  margin: 1px -1px -15px -1px;
+  z-index: 2;
 }
 
 .box-chars p {
   margin-top: 5px;
   margin-bottom: 0;
+}
+
+#schedule-box-card > div.ant-card-body {
+  padding: 0px 0px 24px 0px;
+}
+
+#texto {
+  padding: 15px;
+  resize: none; 
+  margin-bottom: 4;
+  border: none;
+  z-index: 1;
+}
+
+#texto:focus {
+  border-color: #fc8162;
+  border-right-width: 1px !important;
+  outline: 0;
+  -webkit-box-shadow: 0 0 0 0px rgba(240, 85, 55, 0.2);
+  box-shadow: 0 0 0 0px rgba(240, 85, 55, 0.2);
 }

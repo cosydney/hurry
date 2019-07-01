@@ -152,11 +152,12 @@ class ScheduleBox extends Component {
         }
       >
         <Card
+          id='schedule-box-card'
           style={{
             width: 340,
             borderRadius: 10,
             marginLeft: 15,
-            marginRight: 15
+            marginRight: 15,
           }}
           cover={
             <div id={"schedule-top"}>
@@ -247,7 +248,6 @@ class ScheduleBox extends Component {
             onChange={e => this.onTextChange(e)}
             value={text}
             rows={5}
-            style={{ border: "none", resize: "none" }}
             onBlur={() => this.hitToaster()}
           />
           <div className={"box-chars"}>
