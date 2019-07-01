@@ -7,7 +7,58 @@ import { editBox } from "./action";
 const { Option } = Select;
 const { TextArea } = Input;
 
+function getInputSelection(el) {
+  var start = 0, end = 0, normalizedValue, range,
+      textInputRange, len, endRange;
+
+  if (typeof el.selectionStart == "number" && typeof el.selectionEnd == "number") {
+      start = el.selectionStart;
+      end = el.selectionEnd;
+  } else {
+      range = document.selection.createRange();
+
+      if (range && range.parentElement() == el) {
+          len = el.value.length;
+          normalizedValue = el.value.replace(/\r\n/g, "\n");
+
+          // Create a working TextRange that lives only in the input
+          textInputRange = el.createTextRange();
+          textInputRange.moveToBookmark(range.getBookmark());
+
+          // Check if the start and end of the selection are at the very end
+          // of the input, since moveStart/moveEnd doesn't return what we want
+          // in those cases
+          endRange = el.createTextRange();
+          endRange.collapse(false);
+
+          if (textInputRange.compareEndPoints("StartToEnd", endRange) > -1) {
+              start = end = len;
+          } else {
+              start = -textInputRange.moveStart("character", -len);
+              start += normalizedValue.slice(0, start).split("\n").length - 1;
+
+              if (textInputRange.compareEndPoints("EndToEnd", endRange) > -1) {
+                  end = len;
+              } else {
+                  end = -textInputRange.moveEnd("character", -len);
+                  end += normalizedValue.slice(0, end).split("\n").length - 1;
+              }
+          }
+      }
+  }
+
+  return {
+      start: start,
+      end: end
+  };
+}
+
 class ScheduleBox extends Component {
+  constructor(props) {
+    super(props);
+    this.textAreaRef = React.createRef();
+  }
+
   state = {
     number: 0,
     type: "hour",
@@ -74,6 +125,23 @@ class ScheduleBox extends Component {
     );
   };
 
+  insertVariable = value => {
+    let { text } = this.state;
+    let textToInsert = `{${value}}`    
+    var input = document.getElementById("texto");
+
+    let { start } = getInputSelection(input);
+    if (text && start === 0) {
+      start = text.length
+    }
+    let cursorPosition = start
+    let textBeforeCursorPosition = text.substring(0, cursorPosition)
+    let textAfterCursorPosition = text.substring(cursorPosition, text.length)
+    text = textBeforeCursorPosition + textToInsert + textAfterCursorPosition
+    this.setState({ text })
+    setTimeout(() => this.hitToaster(), 300);
+  };
+
   onTextChange = e => {
     this.setState({ text: e.target.value }, () =>
       this.props.editBox(this.props.index, this.state)
@@ -127,7 +195,6 @@ class ScheduleBox extends Component {
                 ))}
               </Select>
               <Select
-                showSearch
                 style={{
                   fontSize: 12,
                   width: 85,
@@ -143,7 +210,6 @@ class ScheduleBox extends Component {
                 <Option value={"day"}>{addS ? "days" : "day"}</Option>
               </Select>
               <Select
-                showSearch
                 style={{
                   fontSize: 12,
                   width: 100,
@@ -159,7 +225,6 @@ class ScheduleBox extends Component {
               </Select>
               <Select
                 id={"insert"}
-                showSearch
                 style={{
                   fontSize: 12,
                   width: 110,
@@ -169,7 +234,7 @@ class ScheduleBox extends Component {
                 }}
                 defaultValue={"Insert"}
                 optionFilterProp="children"
-                // onChange={this.onBeforeChange}
+                onChange={this.insertVariable}
                 value={"Insert"}
               >
                 <Option style={{ fontSize: 11 }} value={"FirstName"}>
@@ -192,7 +257,9 @@ class ScheduleBox extends Component {
           }
         >
           <TextArea
-            onChange={value => this.onTextChange(value)}
+            id='texto'
+            ref={this.textAreaRef} 
+            onChange={e => this.onTextChange(e)}
             value={this.state.text}
             rows={5}
             style={{ border: "none", resize: "none" }}
