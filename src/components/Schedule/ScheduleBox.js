@@ -148,7 +148,6 @@ class ScheduleBox extends Component {
     const { text, number, type, before } = this.state;
 
     const textCount = this.calculateTextCount(text)
-    console.log('textCount', textCount)
     const SMSCount = Math.ceil(textCount / 160);
     const charsCount = 160 * SMSCount;
     let addS = number > 1 ? true : false;

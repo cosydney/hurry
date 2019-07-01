@@ -258,20 +258,6 @@ class Pay extends Component {
                 <h2 style={{ color: "#ED593A" }}>{currency + pricing / 100}</h2>
               </div>
 
-              {/* {pricing <= 500 && (
-                <Button
-                  block
-                  size={"large"}
-                  id={"primary-button"}
-                  type={"primary"}
-                  onClick={() => this.postInfo()}
-                >
-                  Schedule for free{" "}
-                  <span style={{ marginLeft: 10 }} role="img" aria-label="hand">
-                    👉
-                  </span>
-                </Button>
-              )} */}
               {/* Payments */}
               {pricing >= 200 && (
                 <div className={"pay-now"}>
