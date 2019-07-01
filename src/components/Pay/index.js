@@ -140,17 +140,25 @@ class Pay extends Component {
     return contactCount * numberofMsgScheduled;
   }
 
-  render() {
-    const { scheduled_sms, attendees, user, event } = this.props;
+  smsCount() {
+    const { scheduled_sms } = this.props;
     let smsCount = 0;
-    let contactCount = attendees.filter(attendee => attendee.profile.cell_phone)
-      .length;
-
     for (let i = 0; i < scheduled_sms.length; i++) {
       const sms = scheduled_sms[i];
       smsCount += Math.ceil(sms.text.length / 160);
     }
-    let totalSms = smsCount * contactCount;
+    return smsCount
+  }
+
+  contactCountsms() {
+    return this.props.attendees.filter(attendee => attendee.profile.cell_phone).length;
+  }
+
+  render() {
+    const { scheduled_sms, attendees, user, event } = this.props;
+    let totalContactCount = attendees.length;
+
+    let totalSms = this.smsCount() * this.contactCountsms();
     let pricing = this.calculatePricing();
     let currency = event.currency === "EUR" ? "€" : "$";
     let numberofMsgScheduled = scheduled_sms.filter(({ text }) => text).length;
@@ -185,7 +193,7 @@ class Pay extends Component {
                   size="small"
                   style={{ marginRight: 5, color:'darkgrey'}}
                 />
-                {contactCount}</h4>
+                {totalContactCount}</h4>
               </div>
               <hr />
               <div className={"summary-line"}>
@@ -225,8 +233,11 @@ class Pay extends Component {
                 <h2 style={{color: '#ED593A'}}>{currency + pricing / 100}</h2>
               </div>
             </Col>
+
+            {/* Payments */}
             <Col sm={12} xs={24}>
               <h2>2. Payment Details</h2>
+              
             </Col>
           </Row>
         </div>
