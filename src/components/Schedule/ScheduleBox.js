@@ -132,9 +132,25 @@ class ScheduleBox extends Component {
     );
   };
 
+  calculateTextCount(text) {
+    let TextCount = text.length;
+    if (text.includes("{FullName}")) {
+      TextCount += 10
+    }
+    if (text.includes("{TicketLink}")) {
+      TextCount += 9
+    }
+    return TextCount
+  }
+
   render() {
     const { add, addBox, deleteBox, index } = this.props;
     const { text, number, type, before } = this.state;
+
+    const textCount = this.calculateTextCount(text)
+    console.log('textCount', textCount)
+    const SMSCount = Math.ceil(textCount / 160);
+    const charsCount = 160 * SMSCount;
     let addS = number > 1 ? true : false;
     return (
       <Spin
@@ -253,10 +269,10 @@ class ScheduleBox extends Component {
           <div className={"box-chars"}>
             <p className={"chars-count"}>
               <Icon type="font-size" size='small' style={{marginRight: 0}} />{" "}
-              {text.length} /{" "}
-              {160 * Math.ceil(text.length / 160)}{" "}
+              {textCount} /{" "}
+              {charsCount}{" "}
               <Icon type="message" size="small" style={{marginLeft: 30}} />{" "}
-              {Math.ceil(text.length / 160)} SMS
+              {SMSCount} SMS
             </p>
             <Icon
               style={{

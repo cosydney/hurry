@@ -12,7 +12,8 @@ import { URL } from "../../utils/urls";
 const PRICING = 0.2;
 class Pay extends Component {
   state = {
-    eventId: ""
+    eventId: "",
+    paymentComplete: false
   };
 
   onToken = token => {
@@ -29,6 +30,8 @@ class Pay extends Component {
       .then(({ data }) => {
         console.log("data", data);
         message.success(`We are in business`);
+        // TODO reset redux state here?
+        this.setState({ paymentComplete: true })
       })
       .catch(response => {
         message.error("error processing payment", response.error);
@@ -159,7 +162,7 @@ class Pay extends Component {
 
   render() {
     const { scheduled_sms, attendees, user, event } = this.props;
-    const { eventId } = this.state;
+    const { paymentComplete } = this.state;
     let totalContactCount = attendees.length;
 
     let totalSms = this.smsCount() * this.contactCountsms();
@@ -167,6 +170,17 @@ class Pay extends Component {
     let currency = event.currency === "EUR" ? "€" : "$";
     let numberofMsgScheduled = scheduled_sms.filter(({ text }) => text).length;
     let totalEmail = this.calculateEmail();
+
+    if (paymentComplete) {
+      return (
+        <Row gutter={0}>
+          <Col sm={16} xs={24}>
+            <h1>Thank you for your purchase. You will receive an email with your purchase soon.</h1>
+          </Col>
+        </Row>
+      )
+    }
+
     return (
       <div>
         <h1 className="sections">
@@ -261,6 +275,7 @@ class Pay extends Component {
               {/* Payments */}
               {pricing >= 200 && (
                 <div className={"pay-now"}>
+                  {attendees.length > 0 &&
                   <StripeCheckout
                     name="Ema" // the pop-in header title
                     description="Send SMS to your attendees" // the pop-in header subtitle
@@ -306,6 +321,7 @@ class Pay extends Component {
                       Payment processed with stripe
                     </p>
                   </StripeCheckout>
+                  }
                 </div>
               )}
             </div>
