@@ -216,3 +216,20 @@ h1, h2, h3, h4, h5, p {
   -webkit-box-shadow: 0 0 0 0px rgba(240, 85, 55, 0.2);
   box-shadow: 0 0 0 0px rgba(240, 85, 55, 0.2);
 }
+
+/* Rectangle */
+
+.pay {
+  background: #EEF5FF;
+  border: 1px solid #DDDDDD;
+  box-sizing: border-box;
+  border-radius: 6px;
+  padding: 20px;
+  margin: 5px;
+  margin-bottom: 80px;
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+}

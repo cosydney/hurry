@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { message, Button, Icon, Tag } from "antd";
+import { message, Button, Icon, Row, Col } from "antd";
 import Axios from "axios";
 
 import EmaBot from "../../images/ema_botblue.png";
@@ -11,14 +11,14 @@ import { URL } from "../../utils/urls";
 
 const PRICING = 0.2;
 class Pay extends Component {
-  state = {
-    eventId: '',
-  }
+  state = {
+    eventId: ""
+  };
 
   onToken = token => {
-    let { eventId } = this.state;
+    let { eventId } = this.state;
     const { event } = this.props;
-    let body = {}
+    let body = {};
     body.token = token.id;
     body.info = token;
     body.event = eventId;
@@ -26,49 +26,50 @@ class Pay extends Component {
     body.currency = event.currency === "EUR" ? "EUR" : "USD";
 
     Axios.post(`${URL}save-stripe-token`, body)
-    .then(({data}) => {
-        console.log('data', data)
-        message.success(`We are in business`)
-    })
-    .catch(response => {
-      message.error('error processing payment', response.error)
-    })
+      .then(({ data }) => {
+        console.log("data", data);
+        message.success(`We are in business`);
+      })
+      .catch(response => {
+        message.error("error processing payment", response.error);
+      });
   };
 
   postInfo = () => {
-    const { event, user, attendees } = this.props; 
-    if (attendees.length < 1){
-      message.error("You don't have any attendees please import from 1. Import your event contacts")
+    const { event, user, attendees } = this.props;
+    if (attendees.length < 1) {
+      message.error(
+        "You don't have any attendees please import from 1. Import your event contacts"
+      );
       return;
     }
-    let body = {}
+    let body = {};
     body.name = event.name.text;
-    body.start = event.start.utc; 
+    body.start = event.start.utc;
     body.info = event;
     body.email = user.email;
     body.username = user.name;
     body.ebToken = user.ebToken;
-    Axios
-    .post(`${URL}events`, body)
-    .then(response => {
-      let eventId = response.data.id;
-      this.setState({ eventId })
-      console.log('eventId', eventId)
-      // TODO
-      this.postAttendees(eventId);
-      this.postMessages(eventId);
-    })
-    .catch(error => {
-      message.error(`Server error ${error}`)
-    });
-  }
+    Axios.post(`${URL}events`, body)
+      .then(response => {
+        let eventId = response.data.id;
+        this.setState({ eventId });
+        console.log("eventId", eventId);
+        // TODO
+        this.postAttendees(eventId);
+        this.postMessages(eventId);
+      })
+      .catch(error => {
+        message.error(`Server error ${error}`);
+      });
+  };
 
   postAttendees(eventId) {
     const { attendees } = this.props;
     let array = [];
     for (let i = 0; i < attendees.length; i++) {
       const element = attendees[i];
-      let newElement = {}
+      let newElement = {};
       newElement.event = eventId;
       newElement.name = element.profile.name;
       newElement.email = element.profile.email;
@@ -80,12 +81,12 @@ class Pay extends Component {
       array = array[0];
     }
     Axios.post(`${URL}attendees`, array)
-    .then(attendeeresponse => {
-      console.log('attendeeresponse', attendeeresponse.data);
-    })
-    .catch(error => {
-      message.error(`Server error ${error}`)
-    });
+      .then(attendeeresponse => {
+        console.log("attendeeresponse", attendeeresponse.data);
+      })
+      .catch(error => {
+        message.error(`Server error ${error}`);
+      });
   }
 
   postMessages(eventId) {
@@ -93,8 +94,10 @@ class Pay extends Component {
     let array = [];
     for (let i = 0; i < scheduled_sms.length; i++) {
       const element = scheduled_sms[i];
-      let newElement = {}
-      newElement.scheduledTime = new Date((new Date(event.start.utc) -1 + element.schedule_time));
+      let newElement = {};
+      newElement.scheduledTime = new Date(
+        new Date(event.start.utc) - 1 + element.schedule_time
+      );
       newElement.text = element.text;
       newElement.type = element.type;
       newElement.number = element.number;
@@ -106,12 +109,12 @@ class Pay extends Component {
       array = array[0];
     }
     Axios.post(`${URL}scheduledmessages`, array)
-    .then(messagesresponse => {
-      console.log('messagesresponse', messagesresponse.data);
-    })
-    .catch(error => {
-      message.error(`Server error ${error}`)
-    });
+      .then(messagesresponse => {
+        console.log("messagesresponse", messagesresponse.data);
+      })
+      .catch(error => {
+        message.error(`Server error ${error}`);
+      });
   }
 
   calculatePricing() {
@@ -126,7 +129,15 @@ class Pay extends Component {
     }
     let totalSms = smsCount * contactCount;
     let pricing = totalSms * PRICING;
-    return Math.round(pricing * 100)
+    return Math.round(pricing * 100);
+  }
+
+  calculateEmail() {
+    const { scheduled_sms, attendees, user, event } = this.props;
+    let contactCount = attendees.filter(attendee => !attendee.profile.cell_phone)
+    .length;
+    let numberofMsgScheduled = scheduled_sms.filter(({ text }) => text).length;
+    return contactCount * numberofMsgScheduled;
   }
 
   render() {
@@ -142,29 +153,92 @@ class Pay extends Component {
     let totalSms = smsCount * contactCount;
     let pricing = this.calculatePricing();
     let currency = event.currency === "EUR" ? "€" : "$";
-
+    let numberofMsgScheduled = scheduled_sms.filter(({ text }) => text).length;
+    let totalEmail = this.calculateEmail()
     return (
       <div>
-        <h1 className='sections'>
-          <Icon
-            type="dollar-circle"
-            theme="filled"
-            className="icon-section"
-          />{" "}
-          Verify and check out
+        <h1 className="sections">
+          <Icon type="dollar-circle" theme="filled" className="icon-section" />{" "}
+          You're almost there
         </h1>
-        <div>
+        <div className={"pay"}>
+          <Row gutter={40}>
+            <Col sm={12} xs={24}>
+              <h2>1.Order Summary</h2>
+              <div className={"summary-line"}>
+                <h4>Number of messages scheduled:</h4>
+                <h4>
+                  <Icon
+                    type="message"
+                    size="small"
+                    theme="filled"
+                    style={{ marginRight: 5, color:'darkgrey'}}
+                  />
+                  {numberofMsgScheduled}
+                </h4>
+              </div>
+              <div className={"summary-line"}>
+                <h4>Number of contacts to send to:</h4>
+                <h4>
+                <Icon
+                  type="user"
+                  size="small"
+                  style={{ marginRight: 5, color:'darkgrey'}}
+                />
+                {contactCount}</h4>
+              </div>
+              <hr />
+              <div className={"summary-line"}>
+                <h3>Total number of SMS to be sent:</h3>
+                <h3>
+                <Icon
+                  type="message"
+                  size="small"
+                  theme="filled"
+                  style={{ marginRight: 5, color:'darkgrey'}}
+                />
+                {totalSms}</h3>
+              </div>
+              <div className={"summary-line"}>
+                <h3>Price per sms:</h3>
+                <h3>{currency + PRICING}</h3>
+              </div>
+              <br></br>
+              <div className={"summary-line"}>
+                <h3>Total number of Email to be sent:</h3>
+                <h3>
+                <Icon
+                  type="mail"
+                  size="small"
+                  theme="filled"
+                  style={{ marginRight: 5, color:'darkgrey'}}
+                />
+                {totalEmail}</h3>
+              </div>
+              <div className={"summary-line"}>
+                <h3>Price per email:</h3>
+                <h3>free</h3>
+              </div>
+              <hr></hr>
+              <div className={"summary-line"}>
+                <h2>Total Cost:</h2>
+                <h2 style={{color: '#ED593A'}}>{currency + pricing / 100}</h2>
+              </div>
+            </Col>
+            <Col sm={12} xs={24}>
+              <h2>2. Payment Details</h2>
+            </Col>
+          </Row>
+        </div>
+
+        {/* <div>
           You are scheduling <Tag color='blue' className='tag-count'>{smsCount} text messages</Tag>to
           <Tag color='blue' className='tag-count'>{contactCount} of your contacts.</Tag><br />
           That’s <Tag color='blue' className='tag-count'>{totalSms} text messages</Tag>in total.
           <br />
           This will cost you <Tag color='#ffd701' className='price-count'>{currency + pricing / 100}.</Tag>
         </div>
-        {/* <p><Checkbox> Send email unstead to people who don't have a phone number</Checkbox></p> */}
         <br />
-        {/* <Button id={"primary-button"} type={"primary"} onClick={() => this.postInfo()}>
-            Pay now and schedule your messages
-          </Button> */}
         <StripeCheckout
           name="Ema" // the pop-in header title
           description="Send SMS to your attendees" // the pop-in header subtitle
@@ -199,7 +273,7 @@ class Pay extends Component {
         </StripeCheckout>
         <p style={{ color: "lightgrey", marginTop: 10, marginBottom: 20 }}>
           Payment processed with Stripe.
-        </p>
+        </p> */}
       </div>
     );
   }
@@ -222,37 +296,3 @@ export default connect(
   mapStateToProps,
   null
 )(Pay);
-
-// const Eb = {
-//   id: "tok_1EmbFPGbh27lzp9c5Th6kbI9",
-//   object: "token",
-//   card: {
-//     id: "card_1EmbFPGbh27lzp9ccbjSJJd3",
-//     object: "card",
-//     address_city: null,
-//     address_country: null,
-//     address_line1: null,
-//     address_line1_check: null,
-//     address_line2: null,
-//     address_state: null,
-//     address_zip: null,
-//     address_zip_check: null,
-//     brand: "Visa",
-//     country: "US",
-//     cvc_check: "pass",
-//     dynamic_last4: null,
-//     exp_month: 8,
-//     exp_year: 2042,
-//     funding: "credit",
-//     last4: "4242",
-//     metadata: {},
-//     name: "media@42entrepreneurs.fr",
-//     tokenization_method: null
-//   },
-//   client_ip: "193.252.106.172",
-//   created: 1560841011,
-//   email: "media@42entrepreneurs.fr",
-//   livemode: false,
-//   type: "card",
-//   used: false
-// };
