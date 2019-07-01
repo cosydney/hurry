@@ -218,13 +218,13 @@ class ConnectWith extends Component {
                                 {new Date(event.start.utc).getDay()}
                               </h1>
                             </div>
+                            {(event.venue && event.venue.address.localized_address_display) &&
                             <div>
                               <h4>{formatAMPM(new Date(event.start.utc))}</h4>
-                              {(event.venue && event.venue.address.localized_address_display) &&
                                 <h4>{event.venue.name}</h4>
                                 <h4>{event.venue.address.localized_address_display}</h4>
-                              }
                             </div>
+                            }
                           </div>
                         </div>
                       )}
