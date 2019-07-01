@@ -175,7 +175,10 @@ class Pay extends Component {
       return (
         <Row gutter={0}>
           <Col sm={16} xs={24}>
-            <h1>Thank you for your purchase. You will receive an email with your purchase soon.</h1>
+            <div className={"pay"}>
+              {/* Here should redirect */}
+              <h1>Thank you for your purchase. You will receive an email with your purchase soon.</h1>
+            </div>
           </Col>
         </Row>
       )
