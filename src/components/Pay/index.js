@@ -119,6 +119,7 @@ class Pay extends Component {
 
   calculatePricing() {
     const { scheduled_sms, attendees } = this.props;
+    let setupfee = 200;
     let smsCount = 0;
     let contactCount = attendees.filter(attendee => attendee.profile.cell_phone)
       .length;
@@ -129,7 +130,7 @@ class Pay extends Component {
     }
     let totalSms = smsCount * contactCount;
     let pricing = totalSms * PRICING;
-    return Math.round(pricing * 100);
+    return Math.round(pricing * 100) + setupfee;
   }
 
   calculateEmail() {
@@ -172,10 +173,14 @@ class Pay extends Component {
           <Icon type="dollar-circle" theme="filled" className="icon-section" />{" "}
           You're almost there
         </h1>
-        <Row gutter={40}>
+        <Row gutter={0}>
           <Col sm={16} xs={24}>
             <div className={"pay"}>
-            <h1>Order summary:</h1>
+              <h1>Order summary:</h1>
+              <div className={"summary-line"}>
+                <h4>Set up fee:</h4>
+                <h4>{currency}2</h4>
+              </div>
               <div className={"summary-line"}>
                 <h4>Number of messages scheduled:</h4>
                 <h4>
@@ -239,51 +244,70 @@ class Pay extends Component {
                 <h2 style={{ color: "#ED593A" }}>{currency + pricing / 100}</h2>
               </div>
 
-              {/* Payments */}
-              <div className={"pay-now"}>
-                <StripeCheckout
-                  name="Ema" // the pop-in header title
-                  description="Send SMS to your attendees" // the pop-in header subtitle
-                  image={EmaBot}
-                  // ComponentClass="div"
-                  panelLabel="Pay" // prepended to the amount in the bottom pay button
-                  amount={pricing} // cents
-                  currency={event.currency === "EUR" ? "EUR" : "USD"}
-                  stripeKey={STRIPE_PUBLIC_KEY}
-                  locale="fr"
-                  email={user.email}
-                  // Note: Enabling either address option will give the user the ability to
-                  // fill out both. Addresses are sent as a second parameter in the token callback.
-                  shippingAddress={false}
-                  billingAddress={false}
-                  // Note: enabling both zipCode checks and billing or shipping address will
-                  // cause zipCheck to be pulled from billing address (set to shipping if none provided).
-                  zipCode={false}
-                  allowRememberMe // "Remember Me" option (default true)
-                  token={this.onToken} // submit callback
-                  // opened={this.onOpened} // called when the checkout popin is opened (no IE6/7)
-                  // closed={this.onClosed} // called when the checkout popin is closed (no IE6/7)
-
-                  // Note: `reconfigureOnUpdate` should be set to true IFF, for some reason
-                  // you are using multiple stripe keys
-                  reconfigureOnUpdate={false}
-                  // Note: you can change the event to `onTouchTap`, `onClick`, `onTouchStart`
+              {/* {pricing <= 500 && (
+                <Button
+                  block
+                  size={"large"}
+                  id={"primary-button"}
+                  type={"primary"}
+                  onClick={() => this.postInfo()}
                 >
-                  <Button
-                    block
-                    size={"large"}
-                    id={"primary-button"}
-                    type={"primary"}
-                    onClick={() => this.postInfo()}
+                  Schedule for free{" "}
+                  <span style={{ marginLeft: 10 }} role="img" aria-label="hand">
+                    👉
+                  </span>
+                </Button>
+              )} */}
+              {/* Payments */}
+              {pricing >= 200 && (
+                <div className={"pay-now"}>
+                  <StripeCheckout
+                    name="Ema" // the pop-in header title
+                    description="Send SMS to your attendees" // the pop-in header subtitle
+                    image={EmaBot}
+                    // ComponentClass="div"
+                    panelLabel="Pay" // prepended to the amount in the bottom pay button
+                    amount={pricing} // cents
+                    currency={event.currency === "EUR" ? "EUR" : "USD"}
+                    stripeKey={STRIPE_PUBLIC_KEY}
+                    locale="fr"
+                    email={user.email}
+                    // Note: Enabling either address option will give the user the ability to
+                    // fill out both. Addresses are sent as a second parameter in the token callback.
+                    shippingAddress={false}
+                    billingAddress={false}
+                    zipCode={false}
+                    allowRememberMe // "Remember Me" option (default true)
+                    token={this.onToken} // submit callback
+                    // opened={this.onOpened} // called when the checkout popin is opened (no IE6/7)
+                    // closed={this.onClosed} // called when the checkout popin is closed (no IE6/7)
+
+                    // Note: `reconfigureOnUpdate` should be set to true IFF, for some reason
+                    // you are using multiple stripe keys
+                    reconfigureOnUpdate={false}
                   >
-                    Pay now{" "}
-                    <span style={{marginLeft: 10}} role="img" aria-label="hand">
-                      👉
-                    </span>
-                  </Button>
-                  <p style={{color: 'grey', marginTop: 5}}>Payment processed with stripe</p>
-                </StripeCheckout>
-              </div>
+                    <Button
+                      block
+                      size={"large"}
+                      id={"primary-button"}
+                      type={"primary"}
+                      onClick={() => this.postInfo()}
+                    >
+                      Pay now{" "}
+                      <span
+                        style={{ marginLeft: 10 }}
+                        role="img"
+                        aria-label="hand"
+                      >
+                        👉
+                      </span>
+                    </Button>
+                    <p style={{ color: "grey", marginTop: 5 }}>
+                      Payment processed with stripe
+                    </p>
+                  </StripeCheckout>
+                </div>
+              )}
             </div>
           </Col>
         </Row>
