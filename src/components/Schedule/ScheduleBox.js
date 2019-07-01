@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Card, Icon, Input, Select, Spin, message } from "antd";
+import { Card, Icon, Input, Select, Spin, message, Tag } from "antd";
 import { connect } from "react-redux";
 import { editBox } from "./action";
 
@@ -101,29 +101,13 @@ class ScheduleBox extends Component {
     }
   }
 
-  onValueChange = value => {
+  onChange = (value, type) => {
     this.setState(
-      { number: value },
+      { [type]: value },
       () => this.props.editBox(this.props.index, this.state),
-      this.hitToaster()
     );
-  };
-
-  onBeforeChange = value => {
-    this.setState(
-      { before: value },
-      () => this.props.editBox(this.props.index, this.state),
-      this.hitToaster()
-    );
-  };
-
-  onTimeChange = value => {
-    this.setState(
-      { type: value },
-      () => this.props.editBox(this.props.index, this.state),
-      this.hitToaster()
-    );
-  };
+    setTimeout(() => this.hitToaster(), 300);
+  }
 
   insertVariable = value => {
     let { text } = this.state;
@@ -150,7 +134,8 @@ class ScheduleBox extends Component {
 
   render() {
     const { add, addBox, deleteBox, index } = this.props;
-    let addS = this.state.number > 1 ? true : false;
+    const { text, number, type, before } = this.state;
+    let addS = number > 1 ? true : false;
     return (
       <Spin
         spinning={add}
@@ -185,8 +170,8 @@ class ScheduleBox extends Component {
                 }}
                 defaultValue={10}
                 optionFilterProp="children"
-                onChange={this.onValueChange}
-                value={this.state.number}
+                onChange={(value) =>this.onChange(value, 'number')}
+                value={number}
               >
                 {[...Array(60).keys()].map(element => (
                   <Option key={element} value={element}>
@@ -202,8 +187,8 @@ class ScheduleBox extends Component {
                 }}
                 defaultValue={"hour"}
                 optionFilterProp="children"
-                onChange={this.onTimeChange}
-                value={this.state.type}
+                onChange={(value) => this.onChange(value, 'type')}
+                value={type}
               >
                 <Option value={"minute"}>{addS ? "minutes" : "minute"}</Option>
                 <Option value={"hour"}>{addS ? "hours" : "hour"}</Option>
@@ -217,8 +202,8 @@ class ScheduleBox extends Component {
                 }}
                 defaultValue={"before"}
                 optionFilterProp="children"
-                onChange={this.onBeforeChange}
-                value={this.state.before}
+                onChange={(value ) => this.onChange(value, 'before')}
+                value={before}
               >
                 <Option value={"before"}>{"before"}</Option>
                 <Option value={"after"}>{"after"}</Option>
@@ -260,7 +245,7 @@ class ScheduleBox extends Component {
             id='texto'
             ref={this.textAreaRef} 
             onChange={e => this.onTextChange(e)}
-            value={this.state.text}
+            value={text}
             rows={5}
             style={{ border: "none", resize: "none" }}
             onBlur={() => this.hitToaster()}
@@ -268,10 +253,10 @@ class ScheduleBox extends Component {
           <div className={"box-chars"}>
             <p className={"chars-count"}>
               <Icon type="font-size" size='small' style={{marginRight: 0}} />{" "}
-              {this.state.text.length} /{" "}
-              {160 * Math.ceil(this.state.text.length / 160)}{" "}
+              {text.length} /{" "}
+              {160 * Math.ceil(text.length / 160)}{" "}
               <Icon type="message" size="small" style={{marginLeft: 30}} />{" "}
-              {Math.ceil(this.state.text.length / 160)} SMS
+              {Math.ceil(text.length / 160)} SMS
             </p>
             <Icon
               style={{

@@ -31,7 +31,7 @@ class Title extends Component {
     const configLogo = {
       angle: "308",
       spread: "155",
-      startVelocity: "33",
+      startVelocity: "45",
       elementCount: "50",
       dragFriction: 0.1,
       duration: "3370",
