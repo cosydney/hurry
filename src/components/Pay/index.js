@@ -35,6 +35,7 @@ class Pay extends Component {
       });
   };
 
+  // TODO async function?
   postInfo = () => {
     const { event, user, attendees } = this.props;
     if (attendees.length < 1) {
@@ -54,7 +55,6 @@ class Pay extends Component {
       .then(response => {
         let eventId = response.data.id;
         this.setState({ eventId });
-        console.log("eventId", eventId);
         // TODO
         this.postAttendees(eventId);
         this.postMessages(eventId);
@@ -134,8 +134,9 @@ class Pay extends Component {
 
   calculateEmail() {
     const { scheduled_sms, attendees, user, event } = this.props;
-    let contactCount = attendees.filter(attendee => !attendee.profile.cell_phone)
-    .length;
+    let contactCount = attendees.filter(
+      attendee => !attendee.profile.cell_phone
+    ).length;
     let numberofMsgScheduled = scheduled_sms.filter(({ text }) => text).length;
     return contactCount * numberofMsgScheduled;
   }
@@ -147,32 +148,34 @@ class Pay extends Component {
       const sms = scheduled_sms[i];
       smsCount += Math.ceil(sms.text.length / 160);
     }
-    return smsCount
+    return smsCount;
   }
 
   contactCountsms() {
-    return this.props.attendees.filter(attendee => attendee.profile.cell_phone).length;
+    return this.props.attendees.filter(attendee => attendee.profile.cell_phone)
+      .length;
   }
 
   render() {
     const { scheduled_sms, attendees, user, event } = this.props;
+    const { eventId } = this.state;
     let totalContactCount = attendees.length;
 
     let totalSms = this.smsCount() * this.contactCountsms();
     let pricing = this.calculatePricing();
     let currency = event.currency === "EUR" ? "€" : "$";
     let numberofMsgScheduled = scheduled_sms.filter(({ text }) => text).length;
-    let totalEmail = this.calculateEmail()
+    let totalEmail = this.calculateEmail();
     return (
       <div>
         <h1 className="sections">
           <Icon type="dollar-circle" theme="filled" className="icon-section" />{" "}
           You're almost there
         </h1>
-        <div className={"pay"}>
-          <Row gutter={40}>
-            <Col sm={12} xs={24}>
-              <h2>1.Order Summary</h2>
+        <Row gutter={40}>
+          <Col sm={16} xs={24}>
+            <div className={"pay"}>
+            <h1>Order summary:</h1>
               <div className={"summary-line"}>
                 <h4>Number of messages scheduled:</h4>
                 <h4>
@@ -180,7 +183,7 @@ class Pay extends Component {
                     type="message"
                     size="small"
                     theme="filled"
-                    style={{ marginRight: 5, color:'darkgrey'}}
+                    style={{ marginRight: 5, color: "darkgrey" }}
                   />
                   {numberofMsgScheduled}
                 </h4>
@@ -188,103 +191,102 @@ class Pay extends Component {
               <div className={"summary-line"}>
                 <h4>Number of contacts to send to:</h4>
                 <h4>
-                <Icon
-                  type="user"
-                  size="small"
-                  style={{ marginRight: 5, color:'darkgrey'}}
-                />
-                {totalContactCount}</h4>
+                  <Icon
+                    type="user"
+                    size="small"
+                    style={{ marginRight: 5, color: "darkgrey" }}
+                  />
+                  {totalContactCount}
+                </h4>
               </div>
               <hr />
               <div className={"summary-line"}>
                 <h3>Total number of SMS to be sent:</h3>
                 <h3>
-                <Icon
-                  type="message"
-                  size="small"
-                  theme="filled"
-                  style={{ marginRight: 5, color:'darkgrey'}}
-                />
-                {totalSms}</h3>
+                  <Icon
+                    type="message"
+                    size="small"
+                    theme="filled"
+                    style={{ marginRight: 5, color: "darkgrey" }}
+                  />
+                  {totalSms}
+                </h3>
               </div>
               <div className={"summary-line"}>
                 <h3>Price per sms:</h3>
                 <h3>{currency + PRICING}</h3>
               </div>
-              <br></br>
+              <br />
               <div className={"summary-line"}>
                 <h3>Total number of Email to be sent:</h3>
                 <h3>
-                <Icon
-                  type="mail"
-                  size="small"
-                  theme="filled"
-                  style={{ marginRight: 5, color:'darkgrey'}}
-                />
-                {totalEmail}</h3>
+                  <Icon
+                    type="mail"
+                    size="small"
+                    theme="filled"
+                    style={{ marginRight: 5, color: "darkgrey" }}
+                  />
+                  {totalEmail}
+                </h3>
               </div>
               <div className={"summary-line"}>
                 <h3>Price per email:</h3>
                 <h3>free</h3>
               </div>
-              <hr></hr>
+              <hr />
               <div className={"summary-line"}>
                 <h2>Total Cost:</h2>
-                <h2 style={{color: '#ED593A'}}>{currency + pricing / 100}</h2>
+                <h2 style={{ color: "#ED593A" }}>{currency + pricing / 100}</h2>
               </div>
-            </Col>
 
-            {/* Payments */}
-            <Col sm={12} xs={24}>
-              <h2>2. Payment Details</h2>
-              
-            </Col>
-          </Row>
-        </div>
+              {/* Payments */}
+              <div className={"pay-now"}>
+                <StripeCheckout
+                  name="Ema" // the pop-in header title
+                  description="Send SMS to your attendees" // the pop-in header subtitle
+                  image={EmaBot}
+                  // ComponentClass="div"
+                  panelLabel="Pay" // prepended to the amount in the bottom pay button
+                  amount={pricing} // cents
+                  currency={event.currency === "EUR" ? "EUR" : "USD"}
+                  stripeKey={STRIPE_PUBLIC_KEY}
+                  locale="fr"
+                  email={user.email}
+                  // Note: Enabling either address option will give the user the ability to
+                  // fill out both. Addresses are sent as a second parameter in the token callback.
+                  shippingAddress={false}
+                  billingAddress={false}
+                  // Note: enabling both zipCode checks and billing or shipping address will
+                  // cause zipCheck to be pulled from billing address (set to shipping if none provided).
+                  zipCode={false}
+                  allowRememberMe // "Remember Me" option (default true)
+                  token={this.onToken} // submit callback
+                  // opened={this.onOpened} // called when the checkout popin is opened (no IE6/7)
+                  // closed={this.onClosed} // called when the checkout popin is closed (no IE6/7)
 
-        {/* <div>
-          You are scheduling <Tag color='blue' className='tag-count'>{smsCount} text messages</Tag>to
-          <Tag color='blue' className='tag-count'>{contactCount} of your contacts.</Tag><br />
-          That’s <Tag color='blue' className='tag-count'>{totalSms} text messages</Tag>in total.
-          <br />
-          This will cost you <Tag color='#ffd701' className='price-count'>{currency + pricing / 100}.</Tag>
-        </div>
-        <br />
-        <StripeCheckout
-          name="Ema" // the pop-in header title
-          description="Send SMS to your attendees" // the pop-in header subtitle
-          image={EmaBot}
-          // ComponentClass="div"
-          panelLabel="Pay" // prepended to the amount in the bottom pay button
-          amount={pricing} // cents
-          currency={event.currency === "EUR" ? "EUR" : "USD"}
-          stripeKey={STRIPE_PUBLIC_KEY}
-          locale="fr"
-          email={user.email}
-          // Note: Enabling either address option will give the user the ability to
-          // fill out both. Addresses are sent as a second parameter in the token callback.
-          shippingAddress={false}
-          billingAddress={false}
-          // Note: enabling both zipCode checks and billing or shipping address will
-          // cause zipCheck to be pulled from billing address (set to shipping if none provided).
-          zipCode={false}
-          allowRememberMe // "Remember Me" option (default true)
-          token={this.onToken} // submit callback
-          // opened={this.onOpened} // called when the checkout popin is opened (no IE6/7)
-          // closed={this.onClosed} // called when the checkout popin is closed (no IE6/7)
-
-          // Note: `reconfigureOnUpdate` should be set to true IFF, for some reason
-          // you are using multiple stripe keys
-          reconfigureOnUpdate={false}
-          // Note: you can change the event to `onTouchTap`, `onClick`, `onTouchStart`
-        >
-          <Button id={"primary-button"} type={"primary"} onClick={() => this.postInfo()}>
-            Pay now and schedule your messages
-          </Button>
-        </StripeCheckout>
-        <p style={{ color: "lightgrey", marginTop: 10, marginBottom: 20 }}>
-          Payment processed with Stripe.
-        </p> */}
+                  // Note: `reconfigureOnUpdate` should be set to true IFF, for some reason
+                  // you are using multiple stripe keys
+                  reconfigureOnUpdate={false}
+                  // Note: you can change the event to `onTouchTap`, `onClick`, `onTouchStart`
+                >
+                  <Button
+                    block
+                    size={"large"}
+                    id={"primary-button"}
+                    type={"primary"}
+                    onClick={() => this.postInfo()}
+                  >
+                    Pay now{" "}
+                    <span style={{marginLeft: 10}} role="img" aria-label="hand">
+                      👉
+                    </span>
+                  </Button>
+                  <p style={{color: 'grey', marginTop: 5}}>Payment processed with stripe</p>
+                </StripeCheckout>
+              </div>
+            </div>
+          </Col>
+        </Row>
       </div>
     );
   }
