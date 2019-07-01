@@ -11,7 +11,7 @@ const initialState = {
       number: 10,
       type: "hour",
       before: "before",
-      text: "Hey {name}, the event will happen in 10 hours, so get ready! The address of the event will be at "
+      text: "Hey {FullName}, the event will happen in 10 hours, so get ready! The address of the event will be at "
     },
     {
       schedule_time: 24 * 60 * 60 * 1000,
@@ -19,7 +19,7 @@ const initialState = {
       type: "day",
       before: "after",
       text:
-        "Thank you {name} for coming to our event it was a great success thanks to you."
+        "Thank you {FullName} for coming to our event it was a great success thanks to you."
     }
   ]
 };
