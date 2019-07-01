@@ -9,6 +9,7 @@ import { setToken, setUserInfo } from "./action";
 import { URLFront } from "../../utils/urls";
 import { ClientId } from "../../utils/eventBrite";
 import ImportContacts from "../ImportContacts";
+import EbLogo from "../../images/eblogobutton.png"
 
 import Axios from "axios";
 
@@ -120,7 +121,6 @@ class ConnectWith extends Component {
       attendees,
       event
     } = this.props;
-    console.log(event);
     const { spinning, eventBriteVisible } = this.state;
     let contactCount = attendees.filter(
       attendee => attendee.profile.cell_phone
@@ -139,7 +139,9 @@ class ConnectWith extends Component {
                 onClick={() => this.eventBrite()}
                 id={"primary-button"}
                 type={"primary"}
+                style={{display: 'flex'}}
               >
+                <img src={EbLogo} alt='Event brite logo' style={{paddingRight: 5, height: 20}}/>
                 Connect with EventBrite
               </Button>
             )}
