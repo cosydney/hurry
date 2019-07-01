@@ -30,7 +30,7 @@ class ImportContacts extends Component {
     let { ebToken } = this.props.user;
     this.setState({ spinning: true });
     Axios.get(
-      `https://www.eventbriteapi.com/v3/users/me/owned_events/?token=${ebToken}`
+      `https://www.eventbriteapi.com/v3/users/me/owned_events/?expand=venue&token=${ebToken}`
     )
       .then(({ data: { events, pagination } }) => {
         this.setState({
