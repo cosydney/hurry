@@ -239,7 +239,8 @@ class ConnectWith extends Component {
             style={{ top: 30 }}
             title={"Import your contacts with EventBrite"}
             visible={eventBriteVisible}
-            onCancel={() => this.setState({ eventBriteVisible: false })}
+            closable
+            onCancel={() => this.setState({ eventBriteVisible: false})}
             footer={[
               <Button
                 style={{ backgroundColor: "lightgrey" }}
@@ -248,6 +249,13 @@ class ConnectWith extends Component {
               >
                 Cancel
               </Button>
+            //   <Button
+            //   style={{ backgroundColor: "#0664FE" }}
+            //   key="OK"
+            //   onClick={() => this.setState({ eventBriteVisible: false })}
+            // >
+            //   Import
+            // </Button>,
             ]}
           >
             <ImportContacts

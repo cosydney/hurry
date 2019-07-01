@@ -33,12 +33,12 @@ const ContactListHeader = ({ selectedEvent, attendees, resetState, importList, T
           onChange={() => ToggleAttendees()}
         />
         <Button
+          style={{fontWeight: 600}}
           onClick={() => importList()}
-          // type={'primary'}
+          type='primary'
         >
           <Icon
-            type={'import'}
-            rotate={180}
+            type={'user'}
           />
           {`Select ${attendees.filter(({ checked }) => checked).length} attendees`}
         </Button>
