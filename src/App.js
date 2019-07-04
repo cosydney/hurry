@@ -7,10 +7,11 @@ import ConnectWith from "./components/ConnectWith";
 import Schedule from "./components/Schedule";
 import Pay from "./components/Pay";
 
+import Europeflag from "./images/europe.png";
+
 import "./App.css";
 
-require('typeface-inter')
-
+require("typeface-inter");
 
 const { Header, Footer } = Layout;
 
@@ -47,7 +48,7 @@ class App extends Component {
         >
           Privacy by design{" "}
           <span style={{ marginLeft: 40 }} aria-label="lock" role="img">
-            🔒
+            <img src={Europeflag} alt="europe-flag" className="europe" />
           </span>
           GDPR Compliant
         </Footer>
