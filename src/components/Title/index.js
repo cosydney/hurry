@@ -57,7 +57,7 @@ class Title extends Component {
         <div style={{ position: "absolute", display: "flex", marginLeft: isMobile? -63 : -146 }}>
           <canvas id="confetti-holder" />
         </div>
-        <h1
+        <h2
           style={{zIndex: 2}}
           onClick={() => {
             this.setState({ active: true });
@@ -66,7 +66,7 @@ class Title extends Component {
         >
           <Confetti active={active} config={configLogo} />
           Harry (ALPHA)
-        </h1>
+        </h2>
         <h1
           style={{ zIndex: 2, fontSize: 46, color: "#232E50", fontWeight: 600 }}
         >

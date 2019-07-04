@@ -141,7 +141,7 @@ class ConnectWith extends Component {
                 type={"primary"}
                 style={{display: 'flex'}}
               >
-                <img src={EbLogo} alt='Event brite logo' style={{paddingRight: 5, height: 20}}/>
+                <img src={EbLogo} alt='Event brite logo' style={{paddingRight: 5, height: 30}}/>
                 Connect with EventBrite
               </Button>
             )}
