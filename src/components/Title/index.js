@@ -72,10 +72,10 @@ class Title extends Component {
         >
           Increase the attendance rate at your Eventbrite events
         </h1>
-        <h2 style={{ zIndex: 2, color: "#9197A7", fontSize: 24 }}>
+        <h3 style={{ zIndex: 2, color: "#9197A7", fontSize: 24 }}>
           Simply import you event contacts, schedule your messages and send them
           !
-        </h2>
+        </h3>
         </div>
     );
   }

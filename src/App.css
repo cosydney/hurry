@@ -1,10 +1,66 @@
 
 h1, h2, h3, h4, h5, p {
   /* font-family: 'Open Sans', sans-serif; */
-  font-family: 'avenir next';
+  font-family: 'Inter';
 }
 
+h1 {
+  /* Increase the attendance rate at your Eventbrite events */
+  font-style: normal;
+  font-weight: 600;
+  font-size: 46px;
+  line-height: 55px;
+  color: #232E50;
+}
+
+h3 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+/* Import your event contacts */
+
+h2 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 43px;
+  color: #232E50;
+}
+
+h4 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 16px;
+  /* identical to box height */
+  color: #232E50;
+}
+
+h5 .ant-table-column-title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  color: #232E50;
+}
+
+.ant-tag, .ant-tag-blue, .tag-info {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #232E50;
+}
+
+
+
 .sections {
+  align-items: center;
+  display: flex;
   margin-top: 50px;
   margin-bottom: 30px;
 }
@@ -37,7 +93,20 @@ h1, h2, h3, h4, h5, p {
 #primary-button {
   background-image: linear-gradient(135deg, #F05537 0%, #F07837 100%);
   border-radius: 4px;
-  color: 'white'
+  color: 'white';
+
+  /* Pay now 👉 */
+  height: 50px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
 }
 #primary-button:hover {
   box-shadow: 0 2px 8px 0 rgba(255,94,0,0.50);
@@ -86,12 +155,13 @@ h1, h2, h3, h4, h5, p {
 }
 
 .icon-section {
-  font-size: 18px;
+  font-size: 30px;
   background-color: #1b83fa;
   /* background-color: lightslategray; */
   border-radius: 29px;
-  padding: 7px;
+  padding: 8px;
   color: white;
+  margin-right: 20px;
 }
 
 

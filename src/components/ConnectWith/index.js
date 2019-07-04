@@ -127,10 +127,10 @@ class ConnectWith extends Component {
     );
     return (
       <div>
-        <h1 className="sections">
+        <h2 className="sections">
           <Icon className="icon-section" type="contacts" theme="filled" />{" "}
           Import your event contacts
-        </h1>
+        </h2>
         <Spin spinning={spinning}>
           <div>
             {/* BUTTON */}
@@ -182,11 +182,11 @@ class ConnectWith extends Component {
                               margin: 20
                             }}
                           >
-                            <h1>{event.name.text}</h1>
-                            <h2>
+                            <h3>{event.name.text}</h3>
+                            <h3>
                               <Icon type="user" /> {attendees.length} Attendees
                               {/* {contactCount.length} with phone numbers. */}
-                            </h2>
+                            </h3>
                           </div>
                           <div
                             style={{

@@ -193,7 +193,7 @@ class Pay extends Component {
         <Row gutter={0}>
           <Col sm={16} xs={24}>
             <div className={"pay"}>
-              <h1>Order summary:</h1>
+              <h2>Order summary:</h2>
               <div className={"summary-line"}>
                 <h4>Set up fee:</h4>
                 <h4>{currency}2</h4>
@@ -257,8 +257,8 @@ class Pay extends Component {
               </div>
               <hr />
               <div className={"summary-line"}>
-                <h2>Total Cost:</h2>
-                <h2 style={{ color: "#ED593A" }}>{currency + pricing / 100}</h2>
+                <h3>Total Cost:</h3>
+                <h3 style={{ color: "#ED593A" }}>{currency + pricing / 100}</h3>
               </div>
 
               {/* Payments */}

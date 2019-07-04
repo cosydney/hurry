@@ -9,6 +9,9 @@ import Pay from "./components/Pay";
 
 import "./App.css";
 
+require('typeface-inter')
+
+
 const { Header, Footer } = Layout;
 
 class App extends Component {
