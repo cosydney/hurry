@@ -277,6 +277,15 @@ color: #FFFFFF;
   margin-bottom: 4;
   border: none;
   z-index: 1;
+  
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #232E50;
+
+
 }
 
 #texto:focus {
