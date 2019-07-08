@@ -268,7 +268,7 @@ class Pay extends Component {
               </div>
 
               {/* Payments */}
-              {pricing >= 200 && (
+              {pricing >= 100 && (
                 <div className={"pay-now"}>
                   {attendees.length > 0 &&
                   <StripeCheckout
