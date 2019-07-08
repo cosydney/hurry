@@ -9,10 +9,10 @@ class Schedule extends Component {
     const { addBox, scheduled_sms, delBox } = this.props;
     return (
       <div style={{ height: "auto" }}>
-        <h1 className="sections">
+        <h2 className="sections">
           <Icon type="calendar" theme="filled" className="icon-section" />{" "}
           Schedule your messages
-        </h1>
+        </h2>
         <Tag color="blue" className="tag-info">
           {" "}
           <Icon type="info-circle" theme="filled" style={{ marginRight: 8 }} />

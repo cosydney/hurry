@@ -13,6 +13,14 @@ h1 {
   color: #232E50;
 }
 
+h2 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 43px;
+  color: #232E50;
+}
+
 h3 {
   font-style: normal;
   font-weight: 600;
@@ -20,20 +28,10 @@ h3 {
   line-height: 29px;
 }
 
-/* Import your event contacts */
-
-h2 {
-  font-style: normal;
-  font-weight: 600;
-  font-size: 36px;
-  line-height: 43px;
-  color: #232E50;
-}
-
 h4 {
   font-style: normal;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 16px;
   /* identical to box height */
   color: #232E50;

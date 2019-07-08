@@ -186,14 +186,14 @@ class Pay extends Component {
 
     return (
       <div>
-        <h1 className="sections">
+        <h2 className="sections">
           <Icon type="dollar-circle" theme="filled" className="icon-section" />{" "}
-          You're almost there
-        </h1>
+          Order summary:
+        </h2>
         <Row gutter={0}>
           <Col sm={16} xs={24}>
             <div className={"pay"}>
-              <h2>Order summary:</h2>
+              {/* <h2>Order summary:</h2> */}
               <div className={"summary-line"}>
                 <h4>Set up fee:</h4>
                 <h4>{currency}2</h4>
@@ -223,8 +223,8 @@ class Pay extends Component {
               </div>
               <hr />
               <div className={"summary-line"}>
-                <h3>Total number of SMS to be sent:</h3>
-                <h3>
+                <h4>Total number of SMS to be sent:</h4>
+                <h4>
                   <Icon
                     type="message"
                     size="small"
@@ -232,16 +232,16 @@ class Pay extends Component {
                     style={{ marginRight: 5, color: "darkgrey" }}
                   />
                   {totalSms}
-                </h3>
+                </h4>
               </div>
               <div className={"summary-line"}>
-                <h3>Price per sms:</h3>
-                <h3>{currency + PRICING}</h3>
+                <h4>Price per sms:</h4>
+                <h4>{currency + PRICING}</h4>
               </div>
-              <br />
+              <hr />
               <div className={"summary-line"}>
-                <h3>Total number of Email to be sent:</h3>
-                <h3>
+                <h4>Total number of Email to be sent:</h4>
+                <h4>
                   <Icon
                     type="mail"
                     size="small"
@@ -249,15 +249,16 @@ class Pay extends Component {
                     style={{ marginRight: 5, color: "darkgrey" }}
                   />
                   {totalEmail}
-                </h3>
+                </h4>
               </div>
               <div className={"summary-line"}>
-                <h3>Price per email:</h3>
-                <h3>free</h3>
+                <h4>Price per email:</h4>
+                <h4>free</h4>
               </div>
-              <hr />
+              <br />
+              <br />
               <div className={"summary-line"}>
-                <h3>Total Cost:</h3>
+                <h3>Total Price:</h3>
                 <h3 style={{ color: "#ED593A" }}>{currency + pricing / 100}</h3>
               </div>
 
