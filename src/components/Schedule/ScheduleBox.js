@@ -250,9 +250,9 @@ class ScheduleBox extends Component {
                 <Option style={{ fontSize: 11 }} value={"Email"}>
                   {"Email"}
                 </Option>
-                <Option style={{ fontSize: 11 }} value={"TicketLink"}>
+                {/* <Option style={{ fontSize: 11 }} value={"TicketLink"}>
                   {"TicketLink"}
-                </Option>
+                </Option> */}
               </Select>
             </div>
           }
