@@ -125,6 +125,7 @@ class ConnectWith extends Component {
     let contactCount = attendees.filter(
       attendee => attendee.profile.cell_phone
     );
+
     return (
       <div>
         <h2 className="sections">
@@ -215,7 +216,7 @@ class ConnectWith extends Component {
                                 ].toUpperCase()}
                               </h4>
                               <h1 style={{ margin: 0, marginTop: 4 }}>
-                                {new Date(event.start.utc).getDay()}
+                                {new Date(event.start.utc).getDate()}
                               </h1>
                             </div>
                             {(event.venue && event.venue.address.localized_address_display) &&
