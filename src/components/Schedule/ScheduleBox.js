@@ -134,11 +134,17 @@ class ScheduleBox extends Component {
 
   calculateTextCount(text) {
     let TextCount = text.length;
-    if (text.includes("{FullName}")) {
+    if (text.includes("{fullname}")) {
       TextCount += 10
     }
-    if (text.includes("{TicketLink}")) {
+    if (text.includes("{ticketlink}")) {
       TextCount += 9
+    }
+    if (text.includes("{eventaddress}")) {
+      TextCount += 10
+    }
+    if (text.includes("{eventname}")) {
+      TextCount += 10
     }
     return TextCount
   }
@@ -147,7 +153,7 @@ class ScheduleBox extends Component {
     const { add, addBox, deleteBox, index } = this.props;
     const { text, number, type, before } = this.state;
 
-    const textCount = this.calculateTextCount(text)
+    const textCount = this.calculateTextCount(text.toLowerCase())
     const SMSCount = Math.ceil(textCount / 160);
     const charsCount = 160 * SMSCount;
     let addS = number > 1 ? true : false;
@@ -249,6 +255,12 @@ class ScheduleBox extends Component {
                 </Option>
                 <Option style={{ fontSize: 11 }} value={"Email"}>
                   {"Email"}
+                </Option>
+                <Option style={{ fontSize: 11 }} value={"EventName"}>
+                  {"EventName"}
+                </Option>
+                <Option style={{ fontSize: 11 }} value={"EventAddress"}>
+                  {"EventAddress"}
                 </Option>
                 {/* <Option style={{ fontSize: 11 }} value={"TicketLink"}>
                   {"TicketLink"}
