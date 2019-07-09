@@ -82,7 +82,8 @@ class ImportContacts extends Component {
         if (attendees.length === 0) {
           message.warning("There are no attendees for this events");
         }
-        const newAttendees = this.addCheckToAttendees(attendees).reverse();
+        let newAttendees = this.addCheckToAttendees(attendees).reverse();
+        newAttendees = newAttendees.filter(attendees => !attendees.cancelled)
         this.setState({
           spinning: false,
           attendees: newAttendees,
