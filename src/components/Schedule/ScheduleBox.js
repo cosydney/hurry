@@ -145,7 +145,7 @@ class ScheduleBox extends Component {
         var lkeyword = keyword.toLowerCase();
         let replacew = '';
         if (lkeyword === 'eventaddress') {
-          replacew = event.venue.address.localized_multi_line_address_display;
+          replacew = event.venue.name + ',' + event.venue.address.localized_multi_line_address_display;
         }
         if (lkeyword === 'eventname') {
           replacew = event.name.text;
