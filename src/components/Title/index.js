@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import logo from '../../images/logo.svg';
+
 import Confetti from "react-dom-confetti";
 import ConfettiGenerator from "confetti-js";
 
@@ -65,7 +67,7 @@ class Title extends Component {
           }}
         >
           <Confetti active={active} config={configLogo} />
-          Harry (ALPHA)
+          <img src={logo} alt='logo harry' height={60}/> 
         </h2>
         <h1
           style={{ zIndex: 2, fontSize: 46, color: "#232E50", fontWeight: 600 }}

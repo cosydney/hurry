@@ -3,6 +3,7 @@ import {
   DELETE_SCHEDULE_BOX,
   EDIT_BOX
 } from "../../components/Schedule/actionTypes";
+
 import initialState from './scheduleInitialState'
 
 
