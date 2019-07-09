@@ -74,6 +74,10 @@ class ScheduleBox extends Component {
     if (prevProps.info !== this.props.info) {
       this.setState(this.props.info);
     }
+    if ((prevProps.event.name && prevProps.event.name.text !== this.props.event.name.text)
+    || (prevProps.event.name === undefined && this.props.event.name !== undefined)) {
+      this.onTextChange(this.state.text)
+    }
   }
 
   hitToaster() {
@@ -122,12 +126,45 @@ class ScheduleBox extends Component {
     let textBeforeCursorPosition = text.substring(0, cursorPosition)
     let textAfterCursorPosition = text.substring(cursorPosition, text.length)
     text = textBeforeCursorPosition + textToInsert + textAfterCursorPosition
-    this.setState({ text })
+    this.onTextChange(text)
     setTimeout(() => this.hitToaster(), 300);
   };
 
-  onTextChange = e => {
-    this.setState({ text: e.target.value }, () =>
+  createMessage = (msg) => {
+    const { event } = this.props;
+    if (!event.name) {
+      return msg;
+    }
+    var regex = /[^{\}]+(?=})/g;
+    var keywords = msg.match(regex);
+    if (!keywords) {
+      return msg;
+    }
+    if (keywords) {
+      keywords.forEach(keyword => {
+        var lkeyword = keyword.toLowerCase();
+        let replacew = '';
+        if (lkeyword === 'eventaddress') {
+          replacew = event.venue.address.localized_multi_line_address_display;
+        }
+        if (lkeyword === 'eventname') {
+          replacew = event.name.text;
+        }
+        if (lkeyword === 'eventtime') {
+          replacew = event.start.utc;
+        }
+        if (replacew && replacew.length > 0) {
+          msg = msg.replace('{' + keyword + '}', replacew);
+        }
+      });
+    }
+    return msg;
+  }
+
+  onTextChange = value => {
+    // todo check if text has variables that can be updated
+    let text = this.createMessage(value)
+    this.setState({ text }, () =>
       this.props.editBox(this.props.index, this.state)
     );
   };
@@ -152,7 +189,6 @@ class ScheduleBox extends Component {
   render() {
     const { add, addBox, deleteBox, index } = this.props;
     const { text, number, type, before } = this.state;
-
     const textCount = this.calculateTextCount(text.toLowerCase())
     const SMSCount = Math.ceil(textCount / 160);
     const charsCount = 160 * SMSCount;
@@ -259,7 +295,7 @@ class ScheduleBox extends Component {
                 <Option style={{ fontSize: 11 }} value={"EventName"}>
                   {"EventName"}
                 </Option>
-                <Option style={{ fontSize: 11 }} value={"EventAddress"}>
+                <Option style={{ fontSize: 8 }} value={"EventAddress"}>
                   {"EventAddress"}
                 </Option>
                 {/* <Option style={{ fontSize: 11 }} value={"TicketLink"}>
@@ -272,7 +308,7 @@ class ScheduleBox extends Component {
           <TextArea
             id='texto'
             ref={this.textAreaRef} 
-            onChange={e => this.onTextChange(e)}
+            onChange={e => this.onTextChange(e.target.value)}
             value={text}
             rows={5}
             onBlur={() => this.hitToaster()}
@@ -308,8 +344,9 @@ class ScheduleBox extends Component {
   }
 }
 
-const mapStateToProps = ({ schedule }) => ({
-  scheduled_sms: schedule.scheduled_sms
+const mapStateToProps = ({ schedule, event }) => ({
+  scheduled_sms: schedule.scheduled_sms,
+  event,
 });
 
 const mapDispatchToProps = dispatch => {

@@ -5,7 +5,7 @@ const initialState = {
       number: 10,
       type: "hour",
       before: "before",
-      text: "Hey {FirstName}, the event will happen in 10 hours, so get ready!"
+      text: "Hey {FirstName}, {EventName} will happen in 10 hours, so get ready! Location will be at: {EventAddress}"
     },
     {
       schedule_time: 1 * 24 * 60 * 60 * 1000,
