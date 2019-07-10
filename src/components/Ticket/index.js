@@ -19,7 +19,7 @@ export default class Ticket extends Component {
     const { id } = this.props.match.params;
     this.setState({ spinning: true })
     Axios.get(`${URL}attendees/${id}`).then(response =>
-      this.setState({ attendee: response.data[0], spinning: false })
+      this.setState({ attendee: response.data, spinning: false })
     );
   }
 
