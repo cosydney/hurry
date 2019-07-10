@@ -164,7 +164,7 @@ class ConnectWith extends Component {
                     this.setState({ eventBriteVisible: true });
                   }}
                 >
-                  Import another Event
+                  Change Event
                 </Button>
               </div>
                 <div style={{ marginBottom: 10 }}>
@@ -206,10 +206,11 @@ class ConnectWith extends Component {
                                 flexDirection: "column",
                                 alignItems: "center",
                                 minWidth: 70,
-                                height: 70
+                                height: 70,
+                                borderRadius: 4,
                               }}
                             >
-                              <h4 style={{ margin: 0, marginBottom: -10 }}>
+                              <h4 style={{ fontWeight: 600, paddingTop: 6, margin: 0, marginBottom: -10 }}>
                                 {monthNames[
                                   new Date(event.start.utc).getMonth()
                                 ].toUpperCase()}
@@ -220,9 +221,9 @@ class ConnectWith extends Component {
                             </div>
                             {(event.venue && event.venue.address.localized_address_display) &&
                             <div>
-                              <h4>{formatAMPM(new Date(event.start.utc))}</h4>
-                                <h4>{event.venue.name}</h4>
-                                <h4>{event.venue.address.localized_address_display}</h4>
+                              <h4 style={{fontWeight: 600}}>{formatAMPM(new Date(event.start.utc))}</h4>
+                                <h4 style={{fontWeight: 600}}>{event.venue.name}</h4>
+                                <h4 style={{fontWeight: 600}}>{event.venue.address.localized_address_display}</h4>
                             </div>
                             }
                           </div>
