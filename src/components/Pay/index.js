@@ -187,13 +187,12 @@ class Pay extends Component {
     return (
       <div>
         <h2 className="sections">
-          <Icon type="dollar-circle" theme="filled" className="icon-section" />{" "}
-          Order summary:
+          <Icon type="dollar-circle" theme="filled" className="icon-section" style={{fontSize: 25, padding: 10}}/>{" "}
+          Order summary
         </h2>
         <Row gutter={0}>
-          <Col sm={16} xs={24}>
+          <Col lg={10} md={14} sm={16} xs={24}>
             <div className={"pay"}>
-              {/* <h2>Order summary:</h2> */}
               <div className={"summary-line"}>
                 <h4>Set up fee:</h4>
                 <h4>{currency}2</h4>
