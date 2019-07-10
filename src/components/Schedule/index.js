@@ -16,8 +16,9 @@ class Schedule extends Component {
         <Tag color="blue" className="tag-info">
           {" "}
           <Icon type="info-circle" theme="filled" style={{ marginRight: 8 }} />
-            Insert variables to include attendees informations. <br />
-            <span style={{marginLeft: 20}}>Ex: {"{FullName}"} = Rosalia Marquez</span>
+            Insert variables to include attendees informations.
+            <br></br>
+            <span style={{marginLeft: 20}}>Ex: <span style={{color: "#0664FE"}}>{"{FullName}"} </span> = <span style={{color: "#0664FE"}}>Rosalia Marquez</span></span>
         </Tag>
         <div
           style={{
