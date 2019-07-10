@@ -129,7 +129,7 @@ class ConnectWith extends Component {
     return (
       <div>
         <h2 className="sections">
-          <Icon className="icon-section" type="contacts" theme="filled" />{" "}
+          <Icon className="icon-section" type="usergroup-add" />{" "}
           Import your event contacts
         </h2>
         <Spin spinning={spinning}>

@@ -10,7 +10,7 @@ class Schedule extends Component {
     return (
       <div style={{ height: "auto" }}>
         <h2 className="sections">
-          <Icon type="calendar" theme="filled" className="icon-section" />{" "}
+          <Icon type="calendar" theme="filled" className="icon-section" style={{fontSize: 25, padding: 10}}/>{" "}
           Schedule your messages
         </h2>
         <Tag color="blue" className="tag-info">
