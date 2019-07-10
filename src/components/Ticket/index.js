@@ -20,7 +20,10 @@ export default class Ticket extends Component {
     this.setState({ spinning: true })
     Axios.get(`${URL}attendees/${id}`).then(response =>
       this.setState({ attendee: response.data, spinning: false })
-    );
+    )
+    .catch(response => 
+      this.setState({ spinning: false})
+      )
   }
 
   render() {
@@ -64,7 +67,11 @@ export default class Ticket extends Component {
                 </h3>
                 <h3>{attendee.name}</h3>
                 <h3>{email}</h3>
-                <QRCode value={barcode} />
+                <QRCode 
+                bgColor='orange'
+                fgColor='blue'
+                size={250}
+                value={barcode} />
                 <br />
               </div>
             );
@@ -72,6 +79,6 @@ export default class Ticket extends Component {
         </div>
       );
     }
-    return <h1>No ticket to display</h1>;
+    return <h1 style={{padding: 20, margin: 20}}>No ticket to display. Check your url.</h1>;
   }
 }
