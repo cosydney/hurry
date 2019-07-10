@@ -191,7 +191,7 @@ class Pay extends Component {
           Order summary
         </h2>
         <Row gutter={0}>
-          <Col lg={10} md={14} sm={16} xs={24}>
+          <Col lg={10} md={14} sm={16} xs={24} style={{maxWidth: 450, minWidth: 400}}>
             <div className={"pay"}>
               <div className={"summary-line"}>
                 <h4>Set up fee:</h4>
@@ -298,6 +298,7 @@ class Pay extends Component {
                     <Button
                       block
                       size={"large"}
+                      style={{height: 55, fontSize: 22}}
                       id={"primary-button"}
                       type={"primary"}
                       onClick={() => this.postInfo()}
