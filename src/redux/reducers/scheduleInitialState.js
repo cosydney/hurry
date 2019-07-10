@@ -5,7 +5,7 @@ const initialState = {
       number: 10,
       type: "hour",
       before: "before",
-      text: "Hey {FullName}, the event {EventName} will happen in 10 hours, so get ready 🎉! It will take place at {EventAddress}. Can’t wait to see you ✌"
+      text: "Hey {FullName}, the event {EventName} will happen in 10 hours, so get ready 🎉! It will take place at {EventAddress}. Can’t wait to see you ✌. Here is your ticket for the event {TicketLink}"
     },
     {
       schedule_time: 1 * 24 * 60 * 60 * 1000,
