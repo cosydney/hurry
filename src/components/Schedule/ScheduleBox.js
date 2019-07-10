@@ -310,7 +310,7 @@ class ScheduleBox extends Component {
             ref={this.textAreaRef} 
             onChange={e => this.onTextChange(e.target.value)}
             value={text}
-            rows={5}
+            rows={7}
             onBlur={() => this.hitToaster()}
           />
           <div className={"box-chars"}>
