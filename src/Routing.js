@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import App from './App';
+import Ticket from './components/Ticket'
 
 
 export default class Routing extends Component {
   render() {
     return (
       <Router>
-        <Route path="/" component={App} /> 
+        <Route path="/" exact component={App} /> 
+        <Route path="/ticket/:id" exact component={Ticket} /> 
+        <Route path="/dashboard/brite" component={App} /> 
         {/* exact */}
       </Router>
     )

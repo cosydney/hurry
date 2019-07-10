@@ -175,7 +175,7 @@ class ScheduleBox extends Component {
       TextCount += 10
     }
     if (text.includes("{ticketlink}")) {
-      TextCount += 9
+      TextCount += 27
     }
     if (text.includes("{eventaddress}")) {
       TextCount += 10
@@ -298,9 +298,9 @@ class ScheduleBox extends Component {
                 <Option style={{ fontSize: 8 }} value={"EventAddress"}>
                   {"EventAddress"}
                 </Option>
-                {/* <Option style={{ fontSize: 11 }} value={"TicketLink"}>
+                <Option style={{ fontSize: 11 }} value={"TicketLink"}>
                   {"TicketLink"}
-                </Option> */}
+                </Option>
               </Select>
             </div>
           }
