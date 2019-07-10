@@ -67,7 +67,7 @@ class Title extends Component {
           }}
         >
           <Confetti active={active} config={configLogo} />
-          <img src={logo} alt='logo harry' height={60}/> 
+          <img src={logo} alt='logo harry' height={40}/> 
         </h2>
         <h1
           style={{ zIndex: 2, fontSize: 46, color: "#232E50", fontWeight: 600 }}

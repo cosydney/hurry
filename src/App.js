@@ -20,7 +20,7 @@ class App extends Component {
     return (
       <div>
         <Layout style={{ backgroundColor: "#EEF5FF" }}>
-          <Header style={{ backgroundColor: "#EEF5FF" }}>
+          <Header style={{ backgroundColor: "#EEF5FF" }} className='header-back'>
             <Row>
               <Col sm={{ span: 22, offset: 2 }} xs={{ span: 23, offset: 1 }}>
                 <Title />
