@@ -89,7 +89,8 @@ h5 .ant-table-column-title {
 }
 
 #primary-button {
-  background-image: linear-gradient(135deg, #F05537 0%, #F07837 100%);
+  /* background-image: linear-gradient(135deg, #F05537 0%, #F07837 100%); */
+  background-color: #ED593A;
   border-radius: 4px;
   color: 'white';
 
@@ -100,6 +101,7 @@ h5 .ant-table-column-title {
   font-weight: 600;
   font-size: 24px;
   line-height: 29px;
+  box-shadow: 0px 4px 4px rgba(237, 89, 58, 0.1);
 /* identical to box height */
 
 color: #FFFFFF;

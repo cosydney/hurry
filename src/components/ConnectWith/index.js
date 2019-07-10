@@ -140,7 +140,7 @@ class ConnectWith extends Component {
                 onClick={() => this.eventBrite()}
                 id={"primary-button"}
                 type={"primary"}
-                style={{display: 'flex'}}
+                style={{display: 'flex', fontSize: 18}}
               >
                 <img src={EbLogo} alt='Event brite logo' style={{paddingRight: 5, height: 30}}/>
                 Connect with EventBrite
