@@ -191,7 +191,7 @@ class Pay extends Component {
           Order summary
         </h2>
         <Row gutter={0}>
-          <Col lg={10} md={14} sm={16} xs={24} style={{maxWidth: 450, minWidth: 400}}>
+          <Col xs={24} style={{maxWidth: 450}}>
             <div className={"pay"}>
               <div className={"summary-line"}>
                 <h4>Set up fee:</h4>
@@ -256,8 +256,8 @@ class Pay extends Component {
               </div>
               <hr></hr>
               <div className={"summary-line"}>
-                <h4>Product hunt discount:</h4>
-                <h4>20%</h4>
+                <h4 style={{color: '#ED593A'}}>Product hunt discount:</h4>
+                <h4 style={{color: '#ED593A'}}>20%</h4>
               </div>
               <br />
               <br />
