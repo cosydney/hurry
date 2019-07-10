@@ -204,7 +204,7 @@ class Pay extends Component {
                     type="message"
                     size="small"
                     theme="filled"
-                    style={{ marginRight: 5, color: "darkgrey" }}
+                    style={{ marginRight: 5, color: "#232E50" }}
                   />
                   {numberofMsgScheduled}
                 </h4>
@@ -215,7 +215,7 @@ class Pay extends Component {
                   <Icon
                     type="user"
                     size="small"
-                    style={{ marginRight: 5, color: "darkgrey" }}
+                    style={{ marginRight: 5, color: "#232E50" }}
                   />
                   {totalContactCount}
                 </h4>
@@ -228,7 +228,7 @@ class Pay extends Component {
                     type="message"
                     size="small"
                     theme="filled"
-                    style={{ marginRight: 5, color: "darkgrey" }}
+                    style={{ marginRight: 5, color: "#232E50" }}
                   />
                   {totalSms}
                 </h4>
@@ -245,7 +245,7 @@ class Pay extends Component {
                     type="mail"
                     size="small"
                     theme="filled"
-                    style={{ marginRight: 5, color: "darkgrey" }}
+                    style={{ marginRight: 5, color: "#232E50" }}
                   />
                   {totalEmail}
                 </h4>
