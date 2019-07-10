@@ -167,8 +167,7 @@ class ConnectWith extends Component {
                   Import another Event
                 </Button>
               </div>
-                <div style={{ marginBottom: 16 }}>
-                  <span style={{ marginLeft: 8 }} />
+                <div style={{ marginBottom: 10 }}>
                 </div>
                 <Table
                   title={() => (
