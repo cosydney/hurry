@@ -67,14 +67,14 @@ class Title extends Component {
           }}
         >
           <Confetti active={active} config={configLogo} />
-          <img src={logo} alt='logo harry' height={40}/> 
+          <img src={logo} alt='logo harry' height={33}/> 
         </h2>
         <h1
-          style={{ zIndex: 2, fontSize: 46, color: "#232E50", fontWeight: 600 }}
+          style={{ marginBottom: 0, zIndex: 2, fontSize: 46, color: "#232E50", fontWeight: 600 }}
         >
-          Increase the attendance rate at your Eventbrite events
+          Increase the attendance rate at your <br></br> Eventbrite events
         </h1>
-        <h3 style={{ zIndex: 2, color: "#9197A7", fontSize: 24 }}>
+        <h3 style={{ marginTop: -40, zIndex: 2, color: "#9197A7", fontSize: 24 }}>
           Simply import you event contacts, schedule your messages and send them
           !
         </h3>
