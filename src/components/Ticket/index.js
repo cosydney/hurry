@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import QRCode from "qrcode.react";
 
 import Axios from "axios";
@@ -7,9 +6,6 @@ import { Spin } from "antd";
 import { URL } from "../../utils/urls";
 
 export default class Ticket extends Component {
-  static propTypes = {
-    // prop: PropTypes
-  };
 
   state = {
     spinning: false

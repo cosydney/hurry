@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Card, Icon, Input, Select, Spin, message, Tag } from "antd";
+import { Card, Icon, Input, Select, Spin, message } from "antd";
 import { connect } from "react-redux";
 import { editBox } from "./action";
 
@@ -17,7 +17,7 @@ function getInputSelection(el) {
   } else {
       range = document.selection.createRange();
 
-      if (range && range.parentElement() == el) {
+      if (range && range.parentElement() === el) {
           len = el.value.length;
           normalizedValue = el.value.replace(/\r\n/g, "\n");
 

@@ -117,14 +117,14 @@ class ConnectWith extends Component {
 
   render() {
     const {
-      user: { name, email },
+      user: { name }, //email
       attendees,
       event
     } = this.props;
     const { spinning, eventBriteVisible } = this.state;
-    let contactCount = attendees.filter(
-      attendee => attendee.profile.cell_phone
-    );
+    // let contactCount = attendees.filter(
+    //   attendee => attendee.profile.cell_phone
+    // );
 
     return (
       <div>

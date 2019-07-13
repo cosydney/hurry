@@ -137,7 +137,7 @@ class Pay extends Component {
   }
 
   calculateEmail() {
-    const { scheduled_sms, attendees, user, event } = this.props;
+    const { scheduled_sms, attendees } = this.props; //user, event
     let contactCount = attendees.filter(
       attendee => !attendee.profile.cell_phone
     ).length;
