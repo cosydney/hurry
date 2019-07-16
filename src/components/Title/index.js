@@ -74,7 +74,7 @@ class Title extends Component {
         >
           Send SMS to your Eventbrite attendees
         </h1>
-        <h3 style={{ marginTop: -40, zIndex: 2, color: "#9197A7", fontSize: 24 }}>
+        <h3 style={{ marginTop: -20, zIndex: 2, color: "#9197A7", fontSize: 24 }}>
           Simply import you event contacts, schedule your messages and send them
           !
         </h3>
