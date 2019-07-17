@@ -168,6 +168,9 @@ class Pay extends Component {
     let totalSms = this.smsCount() * this.contactCountsms();
     let pricing = this.calculatePricing();
     let currency = event.currency === "EUR" ? "€" : "$";
+    if (event.currency === 'GBP') {
+      currency = '£'
+    }
     let numberofMsgScheduled = scheduled_sms.filter(({ text }) => text).length;
     let totalEmail = this.calculateEmail();
 
@@ -277,7 +280,7 @@ class Pay extends Component {
                     // ComponentClass="div"
                     panelLabel="Pay" // prepended to the amount in the bottom pay button
                     amount={pricing} // cents
-                    currency={event.currency === "EUR" ? "EUR" : "USD"}
+                    currency={event.currency}
                     stripeKey={STRIPE_PUBLIC_KEY}
                     locale="fr"
                     email={user.email}
