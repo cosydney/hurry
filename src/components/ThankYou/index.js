@@ -14,6 +14,7 @@ export default class ThankYou extends Component {
       active: true,
       redirect: false
     });
+    setTimeout(() => this.setState({ active: false }), 300);
   }
 
   render() {
