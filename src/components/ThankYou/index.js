@@ -20,11 +20,11 @@ export default class ThankYou extends Component {
   render() {
     const configLogo = {
       angle: "60",
-      spread: "100",
-      startVelocity: "45",
-      elementCount: "100",
+      spread: (Math.floor(Math.random() * 200) + 80).toString(),
+      startVelocity: (Math.floor(Math.random() * 50) + 10).toString(),
+      elementCount: (Math.floor(Math.random() * 150) + 30).toString(),
       dragFriction: 0.1,
-      duration: "3370",
+      duration: (Math.floor(Math.random() * 4000) + 1000).toString(),
       stagger: "1",
       width: "10px",
       height: "10px",
