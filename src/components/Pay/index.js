@@ -133,7 +133,7 @@ class Pay extends Component {
     }
     let totalSms = smsCount * contactCount;
     let pricing = totalSms * PRICING;
-    return (Math.round(pricing * 100) + setupfee)*0.8;
+    return (Math.round(pricing * 100) + setupfee);
   }
 
   calculateEmail() {
@@ -258,10 +258,6 @@ class Pay extends Component {
                 <h4>free</h4>
               </div>
               <hr></hr>
-              <div className={"summary-line"}>
-                <h4 style={{color: '#ED593A'}}>Product hunt discount:</h4>
-                <h4 style={{color: '#ED593A'}}>20%</h4>
-              </div>
               <br />
               <br />
               <div className={"summary-line"}>
