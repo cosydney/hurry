@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Card, Icon, Input, Select, Spin, message } from "antd";
+import { Popconfirm, Card, Icon, Input, Select, Spin, message } from "antd";
 import { connect } from "react-redux";
 import { editBox } from "./action";
 
@@ -186,13 +186,32 @@ class ScheduleBox extends Component {
     return TextCount
   }
 
+  dateIsPast = (eventDate, schedule_time) => {
+    eventDate = new Date (eventDate);
+    let now = new Date ();
+    const scheduledDate = new Date(eventDate - 1 + (schedule_time + 1))
+    if (scheduledDate - now < 0) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   render() {
-    const { add, addBox, deleteBox, index } = this.props;
-    const { text, number, type, before } = this.state;
+    const { add, addBox, deleteBox, index, event } = this.props;
+    const { text, number, type, before, schedule_time } = this.state;
     const textCount = this.calculateTextCount(text.toLowerCase())
     const SMSCount = Math.ceil(textCount / 160);
     const charsCount = 160 * SMSCount;
     let addS = number > 1 ? true : false;
+    let isPast = false;
+    let scheduledDate = false
+
+    if (event.start) {
+      isPast = this.dateIsPast(event.start.utc, schedule_time)
+      scheduledDate = new Date(new Date(event.start.utc) - 1 + (schedule_time + 1))
+    }
+    
     return (
       <Spin
         spinning={add}
@@ -215,6 +234,7 @@ class ScheduleBox extends Component {
             borderRadius: 10,
             marginLeft: 15,
             marginRight: 15,
+            borderColor: isPast && 'red',
           }}
           cover={
             <div id={"schedule-top"}>
@@ -321,24 +341,37 @@ class ScheduleBox extends Component {
               <Icon type="message" size="small" style={{marginLeft: 30}} />{" "}
               {SMSCount} SMS
             </p>
-            <Icon
-              style={{
-                // backgroundColor: "rgba(255, 255, 255, 0.29)",
-                color: "red",
-                padding: 6,
-                fontSize: 13,
-                borderRadius: 40,
-                marginRight: 6,
-                marginLeft: 20,
-                borderColor: "red",
-                borderStyle: "solid",
-                borderWidth: 1
-              }}
-              type="delete"
-              onClick={() => deleteBox(index)}
-            />
+            <Popconfirm onConfirm={() => deleteBox(index)} title="Delete this message？" okText="Yes" cancelText="No">
+              <Icon
+                style={{
+                  color: "red",
+                  padding: 6,
+                  fontSize: 13,
+                  borderRadius: 40,
+                  marginRight: 6,
+                  marginLeft: 20,
+                  borderColor: "red",
+                  borderStyle: "solid",
+                  borderWidth: 1
+                }}
+                type="delete"
+                // onClick={() => deleteBox(index)}
+              />
+            </Popconfirm>
           </div>
         </Card>
+        {
+          isPast &&
+          <p className='msg-past' >
+          <Icon type="info-circle" theme="filled" style={{ marginRight: 8 }} />
+          This message is scheduled in the past</p>
+        }
+        {
+          !isPast && scheduledDate &&
+          <p className='msg-past' style={{color: '#717171'}}>
+            Will be sent on {scheduledDate.toLocaleString()}
+          </p>
+        }
       </Spin>
     );
   }

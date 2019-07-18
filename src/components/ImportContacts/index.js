@@ -33,9 +33,17 @@ class ImportContacts extends Component {
       `https://www.eventbriteapi.com/v3/users/me/owned_events/?expand=venue&token=${ebToken}`
     )
       .then(({ data: { events, pagination } }) => {
+        let Now = new Date()
+        let filteredevents
+        // this is so it's testable in developement
+        if (process.env.REACT_APP_NODE === 'production') {
+          filteredevents = events.filter(event => new Date(event.start.utc) - Now > 0)
+        } else {
+          filteredevents = events.filter(event => new Date(event.start.utc) - Now < 0)
+        }
         this.setState({
           spinning: false,
-          events: events.reverse(),
+          events: filteredevents.reverse(),
           events_pagination: pagination
         });
         if (pagination.has_more_items) {

@@ -99,7 +99,7 @@ class Pay extends Component {
       const element = scheduled_sms[i];
       let newElement = {};
       newElement.scheduledTime = new Date(
-        new Date(event.start.utc) - 1 + element.schedule_time
+        new Date(event.start.utc) - 1 + (element.schedule_time + 1)
       );
       newElement.text = element.text;
       newElement.type = element.type;
