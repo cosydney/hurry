@@ -5,6 +5,7 @@ import {
 } from "../../components/Schedule/actionTypes";
 
 import initialState from './scheduleInitialState'
+import { RESET_CAMPAIGN } from "../../components/Pay/actionTypes";
 
 
 function calculateMsInterval(interval, type, isBefore) {
@@ -61,6 +62,8 @@ export default function(state = initialState, action) {
         ...state,
         scheduled_sms: newScheduledSms
       };
+    case RESET_CAMPAIGN:
+      return initialState;
     default:
       return state;
   }

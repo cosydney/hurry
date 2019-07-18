@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { message, Button, Icon, Row, Col } from "antd";
 import Axios from "axios";
+import { Redirect } from "react-router-dom";
+
 
 import EmaBot from "../../images/ema_botblue.png";
 
 import StripeCheckout from "react-stripe-checkout";
 import { STRIPE_PUBLIC_KEY } from "../../utils/stripe";
 import { URL } from "../../utils/urls";
+import { resetCampaign } from "./action";
 
 const PRICING = 0.2;
 class Pay extends Component {
@@ -31,6 +34,7 @@ class Pay extends Component {
         console.log("data", data);
         message.success(`We are in business`);
         // TODO reset redux state here?
+        this.props.resetCampaign();
         this.setState({ paymentComplete: true })
       })
       .catch(response => {
@@ -176,14 +180,7 @@ class Pay extends Component {
 
     if (paymentComplete) {
       return (
-        <Row gutter={0}>
-          <Col sm={16} xs={24}>
-            <div className={"pay"}>
-              {/* Here should redirect */}
-              <h1>Thank you for your purchase. You will receive a confirmation email soon.</h1>
-            </div>
-          </Col>
-        </Row>
+        <Redirect to='./thankyou' />
       )
     }
 
@@ -333,13 +330,13 @@ const mapStateToProps = ({ schedule, attendees, user, event }) => ({
   event
 });
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     editBox: (index, info) => dispatch(editBox(index, info))
-//   };
-// };
+const mapDispatchToProps = dispatch => {
+  return {
+    resetCampaign: () => dispatch(resetCampaign())
+  };
+};
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(Pay);

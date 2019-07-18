@@ -14,7 +14,7 @@ import { Spin } from "antd";
 
 require("dotenv").config();
 // for developement purposes
-persistor.purge()
+// persistor.purge()
 
 ReactDOM.render(
   <HttpsRedirect>

@@ -1,0 +1,1 @@
+export const RESET_CAMPAIGN = "RESET_CAMPAIGN";

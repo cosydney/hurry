@@ -122,6 +122,7 @@ class ConnectWith extends Component {
       event
     } = this.props;
     const { spinning, eventBriteVisible } = this.state;
+    
     // let contactCount = attendees.filter(
     //   attendee => attendee.profile.cell_phone
     // );
@@ -147,7 +148,7 @@ class ConnectWith extends Component {
               </Button>
             )}
             {/* TABLE */}
-            {name && (
+            {name && event.name !== '' && (
               <div>
                 <div className={"info-import"}>
                 <Tag color="blue" className="tag-info">
@@ -239,6 +240,19 @@ class ConnectWith extends Component {
               </div>
             )}
           </div>
+          {/* If no event is selected and logged in then show this */}
+          { event.name === '' &&
+            <Button
+            style={{marginTop: 5}}
+            icon={'edit'}
+            type={"primary"}
+            onClick={() => {
+              this.setState({ eventBriteVisible: true });
+            }}
+          >
+              Import event
+            </Button>
+          }
           {/* MODAL */}
           <Modal
             style={{ top: 30 }}

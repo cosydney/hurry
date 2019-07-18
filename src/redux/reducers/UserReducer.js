@@ -6,13 +6,7 @@ const initialState = {
     email: "",
     ebToken: "",
 }
-// events: [
-  //   {
-  //     title: "",
-  //     starting_date: "",
-  //     ending_date: "",
-  //   }
-  // ],
+
 
 export default function(state = initialState, action) {
   switch (action.type) {

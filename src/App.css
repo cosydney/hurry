@@ -308,6 +308,21 @@ color: #FFFFFF;
   margin-bottom: 80px;
 }
 
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.thank-you {
+  background: #EEF5FF;
+  border: 1px solid #DDDDDD;
+  box-sizing: border-box;
+  border-radius: 6px;
+  padding: 20px;
+  margin: 5px;
+}
+
 .summary-line {
   display: flex;
   justify-content: space-between;

@@ -1,6 +1,9 @@
 import { ADD_EVENT } from "../../components/ImportContacts/actionTypes";
+import { RESET_CAMPAIGN } from "../../components/Pay/actionTypes";
 
-const initialState = {}
+const initialState = {
+  name: ''
+}
 
 export default function(state = initialState, action) {
   switch (action.type) {
@@ -8,6 +11,8 @@ export default function(state = initialState, action) {
       return {
         ...action.event
       }
+    case RESET_CAMPAIGN:
+      return initialState;
     default:
       return state;
   }
