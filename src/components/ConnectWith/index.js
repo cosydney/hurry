@@ -241,7 +241,7 @@ class ConnectWith extends Component {
             )}
           </div>
           {/* If no event is selected and logged in then show this */}
-          { event.name === '' &&
+          { event.name === '' && name &&
             <Button
             style={{marginTop: 5}}
             icon={'edit'}
