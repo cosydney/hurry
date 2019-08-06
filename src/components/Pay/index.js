@@ -263,9 +263,7 @@ class Pay extends Component {
               </div>
 
               {/* Payments */}
-              {pricing >= 100 && (
                 <div className={"pay-now"}>
-                  {attendees.length > 0 &&
                   <StripeCheckout
                     name="Ema" // the pop-in header title
                     description="Send SMS to your attendees" // the pop-in header subtitle
@@ -299,7 +297,7 @@ class Pay extends Component {
                       type={"primary"}
                       onClick={() => this.postInfo()}
                     >
-                      Pay now{" "}
+                      Pay and schedule{" "}
                       <span
                         style={{ marginLeft: 10 }}
                         role="img"
@@ -312,9 +310,7 @@ class Pay extends Component {
                       Payment processed with stripe
                     </p>
                   </StripeCheckout>
-                  }
                 </div>
-              )}
             </div>
           </Col>
         </Row>
